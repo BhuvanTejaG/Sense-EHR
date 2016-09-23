@@ -34,9 +34,10 @@ function configureServer () {
     });
 
     // Use Expresss
-
     server.use(express.static(__dirname + '/build/public'));
 	server.use('/node_modules', express.static(__dirname + '/node_modules'));
+	server.use('/bower_components', express.static(__dirname + '/bower_components'));
+	server.use(express.static(__dirname + '/build/public/angular-app'));
 	
 };
 

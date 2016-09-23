@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+	<style type="text/css">
+	@import url("../../css/bootstrap.min.css");
+	</style>
+	
+	<style type="text/css">
+	@import url("../../css/font-awesome.min.css");
+	</style>
+	
+	<style type="text/css">
+	@import url("../../css/nprogress.css");
+	</style>
+	
+	<style type="text/css">
+	@import url("../../css/custom.min.css");
+	</style>
+
+
+        <!-- page content -->
+        <div class="right_col" role="main" ng-controller="RegisterController as regCtrl">
+        
+		          <div class="">
+						<div class="page-title">
+						  <div class="title_left">
+								<h3 style="color:white">Sign Up Form</h3>
+						  </div>
+						</div>
+		          </div>
+
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Patient Registration</h2>
+                   
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+
+                    <!-- Smart Wizard -->
+                    <p>Fields marked with (*) are mandatory.</p>
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                      <ul class="wizard_steps">
+                        <li>
+                          <a href="#step-1">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                              Address Info<br />
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-2">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                              Personal Info<br />
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-3">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                              Emergency Contact<br />
+                                          </span>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                      
+                      <form class="form-horizontal form-label-left" ng-submit="regCtrl.signup()" novalidate>
+                      <div id="step-1">
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="add1">Address Lane 1 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> -->
+                              <input type="text" id="add1" ng-model="regCtrl.add1" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="add2">Address Lane 2 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="add2" ng-model="regCtrl.add2" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+                          <div class="item form-group">
+                            <label for="contact" class="control-label col-md-3 col-sm-3 col-xs-12">Contact <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="tel" id="contact" ng-model="regCtrl.contact" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">City <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="city" ng-model="regCtrl.city" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+                           <div class="item form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">State <span class="required">*</span></label>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                          <select id="state" ng-model="regCtrl.state" required="required" class="select2_single form-control" tabindex="-1">
+	                            <option value="AL">Alabama</option>
+								<option value="AK">Alaska</option>
+								<option value="AZ">Arizona</option>
+								<option value="AR">Arkansas</option>
+								<option value="CA">California</option>
+								<option value="CO">Colorado</option>
+								<option value="CT">Connecticut</option>
+								<option value="DE">Delaware</option>
+								<option value="DC">District Of Columbia</option>
+								<option value="FL">Florida</option>
+								<option value="GA">Georgia</option>
+								<option value="HI">Hawaii</option>
+								<option value="ID">Idaho</option>
+								<option value="IL">Illinois</option>
+								<option value="IN">Indiana</option>
+								<option value="IA">Iowa</option>
+								<option value="KS">Kansas</option>
+								<option value="KY">Kentucky</option>
+								<option value="LA">Louisiana</option>
+								<option value="ME">Maine</option>
+								<option value="MD">Maryland</option>
+								<option value="MA">Massachusetts</option>
+								<option value="MI">Michigan</option>
+								<option value="MN">Minnesota</option>
+								<option value="MS">Mississippi</option>
+								<option value="MO">Missouri</option>
+								<option value="MT">Montana</option>
+								<option value="NE">Nebraska</option>
+								<option value="NV">Nevada</option>
+								<option value="NH">New Hampshire</option>
+								<option value="NJ">New Jersey</option>
+								<option value="NM">New Mexico</option>
+								<option value="NY">New York</option>
+								<option value="NC">North Carolina</option>
+								<option value="ND">North Dakota</option>
+								<option value="OH">Ohio</option>
+								<option value="OK">Oklahoma</option>
+								<option value="OR">Oregon</option>
+								<option value="PA">Pennsylvania</option>
+								<option value="RI">Rhode Island</option>
+								<option value="SC">South Carolina</option>
+								<option value="SD">South Dakota</option>
+								<option value="TN">Tennessee</option>
+								<option value="TX">Texas</option>
+								<option value="UT">Utah</option>
+								<option value="VT">Vermont</option>
+								<option value="VA">Virginia</option>
+								<option value="WA">Washington</option>
+								<option value="WV">West Virginia</option>
+								<option value="WI">Wisconsin</option>
+								<option value="WY">Wyoming</option>
+	                          </select>
+	                        </div>
+	                      </div>
+                          
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip">Zip Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="zip" ng-model="regCtrl.zip" pattern="(\d{5}([\-]\d{4})?)" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                      </div>
+                      
+                      
+                      <div id="step-2">
+    
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip">Profile Picture
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div style="width: 120px; height: 100px; position: relative; background-color: #fbfbfb;   border: 1px solid #b8b8b8; "data-controltype="image">
+                              <img src="https://codiqa.com/static/images/v2/image.png" alt="image" style="position:     absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px">
+							</div>
+						   
+						    <input type="file" id="image" ng-model="regCtrl.image" id="camerainput1" accept="image/*">
+				
+                            </div>
+                          </div>
+
+           					<!--            
+                     	 <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                          
+                               
+                                 Male:<input type="radio" class="flat" ng-model="regCtrl.gender" name="gender" id="genderM" value="M" checked="" required /> Female:
+                               
+                               
+                                   <input type="radio" class="flat" ng-model="regCtrl.gender" name="gender" id="genderF" value="F" />
+                         
+                          
+                            </div>
+                          </div>
+                           
+                           
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div id="gender" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" ng-model="regCtrl.gender" id="genderM" name="gender"  value="Male"  checked > &nbsp; Male &nbsp;
+                                </label>
+                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" ng-model="regCtrl.gender" id="genderF" name="gender"  value="Female"> Female
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          -->
+                          
+                          
+                           <div class="item form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required">*</span></label>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                          <select id="group" ng-model="regCtrl.gender" required="required" class="select2_single form-control" tabindex="-1">
+	                            <option selected="selected" value="Male">Male</option>
+							    <option value="Female">Female</option>
+	                          </select>
+	                        </div>
+	                      </div>
+                        
+                          
+                          
+                          <div class="item form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Blood Group <span class="required">*</span></label>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                          <select id="group" ng-model="regCtrl.group" required="required" class="select2_single form-control" tabindex="-1">
+	                            <option value="A +ve">A Positive</option>
+							    <option value="A -ve">A Negative</option>
+							    <option value="A NA">A Unknown</option>
+							    <option value="B +ve">B Positive</option>
+							    <option value="B -ve">B Negative</option>
+							    <option value="B NA">B Unknown</option>
+							    <option value="AB +ve">AB Positive</option>
+							    <option value="AB -ve">AB Negative</option>
+							    <option value="AB NA">AB Unknown</option>
+							    <option value="O +ve">O Positive</option>
+							    <option value="O -ve">O Negative</option>
+							    <option value="O NA">O Unknown</option>
+							    <option value="NA">Unknown</option>
+	                          </select>
+	                        </div>
+	                      </div>
+	                      
+	                      <div class="item form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Race/Ethnicity <span class="required">*</span></label>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                          <select id="race" ng-model="regCtrl.race" required="required" class="select2_single form-control" tabindex="-1">
+	                            <option value="Mixed Race">Mixed Race</option>
+							    <option value="Arctic">Arctic (Siberian, Eskimo)</option>
+							    <option value="Caucasian">Caucasian (European)</option>
+							    <option value="Caucasian">Caucasian (Indian)</option>
+							    <option value="Caucasian">Caucasian (Middle East)</option>
+							    <option value="Caucasian">Caucasian (North African, Other)</option>
+							    <option value="Indigenous Australian">Indigenous Australian</option>
+							    <option value="Native American">Native American</option>
+							    <option value="North East Asian">North East Asian (Mongol, Tibetan, Korean Japanese, etc)</option>
+							    <option value="Pacific">Pacific (Polynesian, Micronesian, etc)</option>
+							    <option value="South East Asian">South East Asian (Chinese, Thai, Malay, Filipino, etc)</option>
+							    <option value="West African">West African, Bushmen, Ethiopian</option>
+							    <option value="Un Specified">Other Race</option>
+	                          </select>
+	                        </div>
+	                      </div>
+	                      
+	                      <div class="item form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+	                        </label>
+                        	<div class="col-md-6 col-sm-6 col-xs-12">
+                          		<input id="birthday" ng-model="regCtrl.birthday" placeholder="MM/DD/YYYY" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+	                        </div>
+	                      </div>
+
+                      </div>
+                      
+                      
+                      <div id="step-3">
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Emergency  Name <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="name" ng-model="regCtrl.name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Emergency  Email <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="email" id="email" ng-model="regCtrl.email" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+                            <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="relation">Relation <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="relation" ng-model="regCtrl.relation" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          	</div>
+                          
+                          <div class="item form-group">
+                            <label for="relcon" class="control-label col-md-3 col-sm-3 col-xs-12">Emergency Contact <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="tel" id="relcon" ng-model="regCtrl.relcon" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+
+						<br><br>
+						
+						<div  ng-hide="regCtrl.success" class="form-group" style="text-align: center">
+						
+						<button type="submit" class="btn btn-success btn-lg">Register</button>
+						
+						</div>
+ 
+                      </div>
+                      
+                       </form>
+                      
+					    <div ng-if="regCtrl.response" class="alert alert-success" style="text-align: center" role="alert">
+						  <h4>{{ regCtrl.response }}</h4>
+						</div>
+						<div ng-if="regCtrl.invalid" class="alert alert-danger" style="text-align: center" role="alert">
+						  <h4>{{ regCtrl.invalid }}</h4>
+						</div>
+                      
+
+                    </div>
+                    <!-- End SmartWizard Content -->
+
+                  </div>
+                </div>
+              </div>
+           
+         
+        <!-- /page content -->
+
+     
+    
+    <!--jQuery --> 
+    <script src="../../js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+    <script src="../../js/bootstrap.min.js"></script>
+
+	<!-- FastClick -->
+    <script src="../../js/fastclick.js"></script>
+	<!-- 
+    <script src="../../js/nprogress.js"></script>
+     -->
+     
+    <!-- validator -->
+    <script src="../../js/validator.js"></script>
+    <!-- jQuery Smart Wizard -->
+    <script src="../../js/jquery.smartWizard.js"></script>
+	<!-- Custom Theme Scripts -->
+    <script src="../../js/custom.min.js"></script>
+    
+    <!-- bootstrap-daterangepicker -->
+    <script src="../../js/moment.min.js"></script>
+    <script src="../../js/daterangepicker.js"></script>
+    
+    
+    <!-- bootstrap-daterangepicker
+    <script>
+      $(document).ready(function() {
+        $('#birthday').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_4"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+      });
+    </script>
+    
+     -->
+    <!-- /bootstrap-daterangepicker -->
+
+
+    <!-- jQuery Smart Wizard -->
+    <script>
+      $(document).ready(function() {
+        $('#wizard').smartWizard();
+        $('.buttonNext').addClass('btn btn-success');
+        $('.buttonPrevious').addClass('btn btn-primary');
+        $('.buttonFinish').hide();
+        
+        // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+        	//validator.checkField
+        	/*
+        $('form')
+          .on('blur', 'input[required], input.optional, select.required',validator.checkField)
+          .on('change', 'select.required', validator.checkField)
+          .on('keypress', 'input[required][pattern]', validator.keypress);
+
+        $('.multi.required').on('keyup blur', 'input', function() {
+            validator.checkField.apply($(this).siblings().last()[0]);
+          });
+        
+        */
+
+      });
+    </script>
+    <!-- /jQuery Smart Wizard -->

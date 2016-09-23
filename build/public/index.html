@@ -1,18 +1,165 @@
 <!DOCTYPE html>
 <html ng-app="sense-ehr">
-<head>
-  <title>Sense EHR</title>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sense EHR! </title>
+
+	<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="css/nprogress.css" rel="stylesheet">
+    
+    <!-- Custom Theme Style -->
+    <link href="css/custom.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+	  #footer {
+	    position : absolute;
+	    bottom : 0;
+	    height : 40px;
+	    margin-top : 40px;
+	  }
+	</style>
+
+  </head>
+
+<body class="nav-md">
+
+<!-- Side Bar & Top Section -->
+	 <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <p class="site_title"><i class="fa fa-medkit"></i>  <span>&nbsp;&nbsp;Sense EHR!</span></p>
+            </div>
+
+            <div class="clearfix"></div>
+           
+
+            <!-- menu profile quick info -->
+            <div class="profile">
+              <div class="profile_pic">
+                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>John Doe</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br /><br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                
+                <br />
+                <br />
+
+                <ul class="nav side-menu">
+                
+                 <li><a><i class="fa fa-bar-chart-o"></i> DashBoard <span class="fa fa-chevron-right"></span></a>
+
+                  </li>
+                  
+                   <li><a><i class="fa fa-calendar"></i> Book Appointment <span class="fa fa-chevron-right"></span></a>
+                   
+                   
+                  </li>
+                  
+                  <li><a><i class="fa fa-newspaper-o"></i> Profile <span class="fa fa-chevron-right"></span></a>
+                   
+                   
+                  </li>
+                  
+                  <li><a><i class="fa fa-history"></i> My History <span class="fa fa-chevron-right"></span></a>
+                   
+                   
+                  </li>
+                  
+                  <li><a><i class="fa fa-desktop"></i> Messages <span class="fa fa-chevron-right"></span></a>
+                   
+                  </li>
+                  
+                  <li><a><i class="fa fa-power-off"></i> Logout <span class="fa fa-chevron-right"></span></a>
+                   
+                  </li>
+                
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+<!-- Side Bar & Top Section -->
+
+			    <div ng-view></div>
+
+
   
-</head>
-<body>
-  <div >
-    <div ng-view></div>
-  </div>
-  
+  <!--  Footer Section -->
+     <!-- footer content -->
+
+        <footer>
+          <div style="text-align:center">
+           Footer Space |Team Sense-EHR
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        </div>
+        <!-- /footer content -->
+      </div>
+
+  <!--  Footer Section -->
+
+</body>
+
   <script src="../../node_modules/angular/angular.js"></script>
   <script src="../../node_modules/angular-route/angular-route.js"></script>
   <script src="../../node_modules/angular-jwt/dist/angular-jwt.js"></script>
   <script src="angular-app/index.js"></script>
+  <script src="angular-app/landing/register-controller.js"></script>
+  <script src="angular-app/landing/login-controller.js"></script>
+  <script src="../../bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
   
-</body>
+  	<!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="js/nprogress.js"></script>
+    <!-- validator -->
+    <script src="js/validator.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.min.js"></script>
+  
 </html>
