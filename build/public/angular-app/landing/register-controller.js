@@ -47,22 +47,6 @@ function RegisterController($http) {
 			  relation: vm.relation || "NA",
 			  relcon: vm.relcon || "NA"	  
 	  };
-
-//	  alert("add" + vm.add1);
-//	  alert("add2" + vm.add2);
-//	  alert("contact" +vm.contact);
-//	  alert("city" +vm.city);
-//	  alert("state" +vm.state);
-//	  alert("zip"+vm.zip);
-//	  alert("gender" +vm.gender);
-//	  alert("group"+vm.group);
-//	  alert("bdy"+vm.birthday);
-//	  alert("race"+vm.race);
-//	  alert("name"+vm.name);
-//	  alert("email"+vm.email);
-//	  alert("reL"+vm.relation);
-//	  alert("relcon"+vm.relcon);
-
 	  
 	  if (!vm.add1 || !vm.add2 || !vm.contact || !vm.city || !vm.state || !vm.zip || !vm.gender || !vm.group || !vm.birthday || !vm.race || !vm.name || !vm.email || !vm.relation || !vm.relcon ) {
 	      alert('unsuccessful');
@@ -95,18 +79,10 @@ function RegisterController($http) {
 			  spec: vm.spec_doc 
 	  };
 
-//	  alert("add ::" + vm.add1_doc);
-//	  alert("add2::" + vm.add2_doc);
-//	  alert("contact::" +vm.contact_doc);
-//	  alert("city::" +vm.city_doc);
-//	  alert("state::" +vm.state_doc);
-//	  alert("zip::"+vm.zip_doc);
-//	  alert("gender::" +vm.gender_doc);
-//	  alert("group::"+vm.spec_doc);
 
 	  if (!vm.add1_doc || !vm.add2_doc || !vm.contact_doc || !vm.city_doc || !vm.state_doc || !vm.zip_doc || !vm.gender_doc || !vm.spec_doc ) {
 	      alert('unsuccessful');
-	      cosole.log('successful');
+	      console.log('successful');
 		 
 	    } else {
 	    	alert('Successful');

@@ -12,6 +12,9 @@ function config($httpProvider, $routeProvider) {
     .when('/register-doctor', {
       templateUrl: 'angular-app/register/register-doctor.html'
     })
+    .when('/profile', {
+      templateUrl: 'angular-app/profile/profile.html'
+    })
     .otherwise({
       redirectTo: '/'
     });
