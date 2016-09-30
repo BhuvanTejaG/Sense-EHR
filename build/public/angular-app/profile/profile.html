@@ -188,6 +188,15 @@
 									</h5> 
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Country :
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<h5>{{profile.country}}
+									</h5> 
+								</div>
+							</div>
 
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Zip
@@ -496,7 +505,17 @@
 									</select>
 								</div>
 							</div>
-
+							
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Country
+									 <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input id="country" ng-model="profile.country" required="required"
+										class="form-control col-md-7 col-xs-12" type="text" name="country">
+								</div>
+							</div>
+							
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Zip
 									Code <span class="required">*</span>
@@ -560,10 +579,19 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<button type="submit" class="btn btn-success"
-										ng-click="profile.updatePatientDetails()">Update
+										ng-disabled="form1.$pristine" ng-click="profile.updatePatientDetails()">Update
 										Details</button>
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+									<button type="submit" class="btn btn-success"
+										ng-click="profile.onLoad()">Cancel
+										</button>
+								</div>
+							</div>
+							
 						</div>
 					</form>
 				</div>
@@ -579,7 +607,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
-					<form id="form1" data-parsley-validate
+					<form id="form3" data-parsley-validate
 						class="form-horizontal form-label-left">
 
 						<div class="x_title">
@@ -725,6 +753,16 @@
 							</div>
 
 							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12"
+									for="address2">Country :
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<h5>{{profile.country_doc}}
+									</h5> 
+								</div>
+							</div>
+							
+							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Zip
 									Code :
 								</label>
@@ -757,7 +795,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
-					<form id="form1" data-parsley-validate
+					<form id="form4" data-parsley-validate
 						class="form-horizontal form-label-left">
 
 						<div class="x_title">
@@ -980,6 +1018,17 @@
 								</div>
 							</div>
 
+
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Country
+									 <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input id="country_doc" ng-model="profile.country_doc" required="required"
+										class="form-control col-md-7 col-xs-12" type="text" name="country_doc">
+								</div>
+							</div>
+					
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Zip
 									Code <span class="required">*</span>
@@ -996,10 +1045,19 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<button type="submit" class="btn btn-success"
-										ng-click="profile.updateDoctorDetails()">Update
+										ng-disabled="form4.$pristine" ng-click="profile.updateDoctorDetails()">Update
 										Details</button>
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+									<button type="submit" class="btn btn-success"
+										ng-click="profile.onLoad()">Cancel
+										</button>
+								</div>
+							</div>
+							
 						</div>
 					</form>
 				</div>
