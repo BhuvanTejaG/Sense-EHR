@@ -4,6 +4,13 @@ exports.db = {
    collections: ['doctors','patients']
 }
 
+exports.sqldb = {
+	host: "localhost",
+	user: "root",
+	password: "1234",
+	database: "ehr"
+}
+
 
 // Port Info
 exports.port = 3000;

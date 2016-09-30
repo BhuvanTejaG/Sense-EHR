@@ -4,6 +4,7 @@ var express = require('express');
 var server = express();
 
 
+
 // Server Dependencies
 
 var dep = {
@@ -11,7 +12,8 @@ var dep = {
     path: require('path'),
     cors: require('cors'),
     config: require('./build/config'),
-    bodyParser: require('body-parser')
+    bodyParser: require('body-parser'),
+    routes: require('./build/api/routes')
 
 }
 
@@ -38,6 +40,9 @@ function configureServer () {
 	server.use('/node_modules', express.static(__dirname + '/node_modules'));
 	server.use('/bower_components', express.static(__dirname + '/bower_components'));
 	server.use(express.static(__dirname + '/build/public/angular-app'));
+	
+	// Add Routing
+	server.use('/api', dep.routes);
 	
 };
 

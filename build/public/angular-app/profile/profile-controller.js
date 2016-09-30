@@ -1,6 +1,6 @@
 angular.module('sense-ehr').controller('ProfileController', ProfileController);
 
-function ProfileController($http) {
+function ProfileController($http, patientDataFactory) {
 	
 	var vm = this;
 	vm.invalid= false;
@@ -47,8 +47,37 @@ function ProfileController($http) {
 		 vm.city_doc="SJC";
 		 vm.state_doc="CA";
 		 vm.zip_doc="95110";
-		
-		
+		 
+		 console.log("Inside Load Method");
+		 
+		 /*
+			$http({
+  			method: 'GET',
+  			url: '/profile',	
+  			data: {'patient_id':"1" }		         			
+  			}).success(function(result){
+  				console.log(result);
+ 	            vm.response = 'Patient Details Updated Successfully..!!';
+ 	            vm.success= true;
+				}).error(function(error){
+					vm.response = 'Patient Details Not Updated !!';
+			        vm.invalid= true;
+		            console.log(error);
+				});	
+		  */
+			
+			patientDataFactory.getPatientProfile(1).then(function(response) {
+				if(response.status === 200) {
+					
+					//vm.profile = response.data;
+					console.log(response.data);
+					
+				}
+			   
+			  }).catch(function(error) {
+			        console.log(error);
+		      });
+
 	 };
 	 
 	 vm.editPatientDetails=function(){

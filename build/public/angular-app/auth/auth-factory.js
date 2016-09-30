@@ -6,7 +6,7 @@ function AuthFactory() {
   };
 
   var auth = {
-    isLoggedIn: false
+    isLoggedIn: false,
     isDoctor: false
   };
 }
