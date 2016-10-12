@@ -18,7 +18,7 @@
  -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
+        <div class="right_col" role="main" ng-controller="LoginController as regCtrl">
         
 		          <div class="">
 						<div class="page-title">
@@ -68,7 +68,7 @@
                         
                       </ul>
                       
-                      <form class="form-horizontal form-label-left" ng-submit="lgnCtrl.signupPatient()" novalidate>
+                      <form class="form-horizontal form-label-left" ng-submit="regCtrl.signupPatient()" novalidate>
                       <div id="step-1">
 
                           <div class="item form-group">
@@ -76,7 +76,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <!-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> -->
-                              <input type="text" id="add1" ng-model="lgnCtrl.add1" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="add1" ng-model="regCtrl.add1" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -84,7 +84,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="add2">Address Lane 2 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="add2" ng-model="lgnCtrl.add2" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="add2" ng-model="regCtrl.add2" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -92,7 +92,7 @@
                             <label for="contact" class="control-label col-md-3 col-sm-3 col-xs-12">Contact <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="tel" id="contact" ng-model="lgnCtrl.contact" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
+                              <input type="tel" id="contact" ng-model="regCtrl.contact" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -100,14 +100,14 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">City <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="city" ng-model="lgnCtrl.city" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="city" ng-model="regCtrl.city" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
                            <div class="item form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">State <span class="required">*</span></label>
 	                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                          <select id="state" ng-model="lgnCtrl.state" required="required" class="select2_single form-control" tabindex="-1">
+	                          <select id="state" ng-model="regCtrl.state" required="required" class="select2_single form-control" tabindex="-1">
 	                            <option value="AL">Alabama</option>
 								<option value="AK">Alaska</option>
 								<option value="AZ">Arizona</option>
@@ -167,7 +167,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip">Zip Code <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="zip" ng-model="lgnCtrl.zip" pattern="(\d{5}([\-]\d{4})?)" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="zip" ng-model="regCtrl.zip" pattern="(\d{5}([\-]\d{4})?)" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
 
@@ -184,11 +184,7 @@
                               <img src="https://codiqa.com/static/images/v2/image.png" alt="image" style="position:     absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px">
 							</div>
 						   
-						   <!--  <input type="file" id="image" fileread="lgnCtrl.image" id="camerainput1" accept="image/*">  -->
-						    
-						    <input type="file" ng-model="lgnCtrl.image" id="image" name="image" accept="image/*" maxsize="10" base-sixty-four-input>
-						    <span ng-show="form.image.$error.maxsize">Files must not exceed 10 KB</span>
-						    
+						    <input type="file" id="image" fileread="regCtrl.image" id="camerainput1" accept="image/*">
 				
                             </div>
                           </div>
@@ -200,10 +196,10 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                           
                                
-                                 Male:<input type="radio" class="flat" ng-model="lgnCtrl.gender" name="gender" id="genderM" value="M" checked="" required /> Female:
+                                 Male:<input type="radio" class="flat" ng-model="regCtrl.gender" name="gender" id="genderM" value="M" checked="" required /> Female:
                                
                                
-                                   <input type="radio" class="flat" ng-model="lgnCtrl.gender" name="gender" id="genderF" value="F" />
+                                   <input type="radio" class="flat" ng-model="regCtrl.gender" name="gender" id="genderF" value="F" />
                          
                           
                             </div>
@@ -216,10 +212,10 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div id="gender" class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" ng-model="lgnCtrl.gender" id="genderM" name="gender"  value="Male"  checked > &nbsp; Male &nbsp;
+                                  <input type="radio" ng-model="regCtrl.gender" id="genderM" name="gender"  value="Male"  checked > &nbsp; Male &nbsp;
                                 </label>
                                 <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" ng-model="lgnCtrl.gender" id="genderF" name="gender"  value="Female"> Female
+                                  <input type="radio" ng-model="regCtrl.gender" id="genderF" name="gender"  value="Female"> Female
                                 </label>
                               </div>
                             </div>
@@ -231,7 +227,7 @@
                            <div class="item form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required">*</span></label>
 	                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                          <select id="group" ng-model="lgnCtrl.gender" required="required" class="select2_single form-control" tabindex="-1">
+	                          <select id="group" ng-model="regCtrl.gender" required="required" class="select2_single form-control" tabindex="-1">
 	                            <option selected="selected" value="Male">Male</option>
 							    <option value="Female">Female</option>
 	                          </select>
@@ -243,7 +239,7 @@
                           <div class="item form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Blood Group <span class="required">*</span></label>
 	                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                          <select id="group" ng-model="lgnCtrl.group" required="required" class="select2_single form-control" tabindex="-1">
+	                          <select id="group" ng-model="regCtrl.group" required="required" class="select2_single form-control" tabindex="-1">
 	                            <option value="A +ve">A Positive</option>
 							    <option value="A -ve">A Negative</option>
 							    <option value="A NA">A Unknown</option>
@@ -264,7 +260,7 @@
 	                      <div class="item form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Race/Ethnicity <span class="required">*</span></label>
 	                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                          <select id="race" ng-model="lgnCtrl.race" required="required" class="select2_single form-control" tabindex="-1">
+	                          <select id="race" ng-model="regCtrl.race" required="required" class="select2_single form-control" tabindex="-1">
 	                            <option value="Mixed Race">Mixed Race</option>
 							    <option value="Arctic">Arctic (Siberian, Eskimo)</option>
 							    <option value="Caucasian">Caucasian (European)</option>
@@ -286,7 +282,7 @@
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
 	                        </label>
                         	<div class="col-md-6 col-sm-6 col-xs-12">
-                          		<input id="birthday" ng-model="lgnCtrl.birthday" placeholder="MM/DD/YYYY" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                          		<input id="birthday" ng-model="regCtrl.birthday" placeholder="MM/DD/YYYY" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
 	                        </div>
 	                      </div>
 	                      
@@ -294,7 +290,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="insurance">Insurance Provider <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="name" ng-model="lgnCtrl.insurance" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="name" ng-model="regCtrl.insurance" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -302,7 +298,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="insurance_id">Insurance ID <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="name" ng-model="lgnCtrl.insurance_id" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="name" ng-model="regCtrl.insurance_id" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
 
@@ -315,7 +311,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Emergency  Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="name" ng-model="lgnCtrl.name" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="name" ng-model="regCtrl.name" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -323,7 +319,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Emergency  Email <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="email" id="email" ng-model="lgnCtrl.email" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="email" id="email" ng-model="regCtrl.email" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -331,7 +327,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="relation">Relation <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="relation" ng-model="lgnCtrl.relation" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="relation" ng-model="regCtrl.relation" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           	</div>
                           
@@ -339,14 +335,14 @@
                             <label for="relcon" class="control-label col-md-3 col-sm-3 col-xs-12">Emergency Contact <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="tel" id="relcon" ng-model="lgnCtrl.relcon" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
+                              <input type="tel" id="relcon" ng-model="regCtrl.relcon" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
 
 						<br><br>
 						
-						<div  ng-hide="lgnCtrl.success" class="form-group" style="text-align: center">
+						<div  ng-hide="regCtrl.success" class="form-group" style="text-align: center">
 						
 						<button type="submit" class="btn btn-success btn-lg">Register</button>
 						
@@ -356,11 +352,11 @@
                       
                        </form>
                       
-					    <div ng-if="lgnCtrl.response" class="alert alert-success" style="text-align: center" role="alert">
-						  <h4>{{ lgnCtrl.response }}</h4>
+					    <div ng-if="regCtrl.response" class="alert alert-success" style="text-align: center" role="alert">
+						  <h4>{{ regCtrl.response }}</h4>
 						</div>
-						<div ng-if="lgnCtrl.invalid" class="alert alert-danger" style="text-align: center" role="alert">
-						  <h4>{{ lgnCtrl.invalid }}</h4>
+						<div ng-if="regCtrl.invalid" class="alert alert-danger" style="text-align: center" role="alert">
+						  <h4>{{ regCtrl.invalid }}</h4>
 						</div>
                       
 

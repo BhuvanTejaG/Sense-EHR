@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Sense EHR! </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -30,10 +30,20 @@
 
   </head>
 
-<body class="nav-md">
+<body class="nav-md" ng-controller="LoginController as lgnCtrl" ng-cloak>
 
+	<div ng-show="!lgnCtrl.isLoggedIn && !lgnCtrl.isSignedUp" ng-include src='"angular-app/landing/main.html"'>
+	</div>
+	
+	<div ng-show="lgnCtrl.isLoggedIn && !lgnCtrl.isSignedUp && !lgnCtrl.isDoctor" ng-include src='"angular-app/register/register.html"'>
+	</div>
+	
+	<div ng-show="lgnCtrl.isLoggedIn && !lgnCtrl.isSignedUp && lgnCtrl.isDoctor" ng-include src='"angular-app/register/register-doctor.html"'>
+	</div>
+
+	
 <!-- Side Bar & Top Section -->
-	 <div class="container body">
+	 <div class="container body" ng-show="lgnCtrl.isLoggedIn && lgnCtrl.isSignedUp">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
@@ -47,11 +57,12 @@
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img ng-if="lgnCtrl.profile.base64_image == null" src="images/user.png" alt="..." class="img-circle profile_img">
+                <img ng-if="lgnCtrl.profile.base64_image != null" ng-src="data:{{lgnCtrl.profile.file_type}};base64,{{lgnCtrl.profile.base64_image}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>{{lgnCtrl.profile.first_name}}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -61,12 +72,17 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                
                 
                 <br />
                 <br />
-
-                <ul class="nav side-menu">
+                <br />
+                <br />
+                
+                
+				<h3>Menu Options</h3>
+				
+                <ul class="nav side-menu" ng-show="!lgnCtrl.isDoctor">
                 
                  <li><a><i class="fa fa-bar-chart-o"></i> DashBoard <span class="fa fa-chevron-right"></span></a>
 
@@ -94,6 +110,36 @@
                   <li><a><i class="fa fa-power-off"></i> Logout <span class="fa fa-chevron-right"></span></a>
                    
                   </li>
+                
+                </ul>
+                
+                
+                <ul class="nav side-menu" ng-show="lgnCtrl.isDoctor">
+                
+                 <li><a ng-click="lgnCtrl.showDoctorDashboard()"><i class="fa fa-bar-chart-o"></i> DashBoard <span class="fa fa-chevron-right"></span></a>
+
+                 </li>
+                 
+                 <li><a ng-click="lgnCtrl.showPatients()"><i class="fa fa-user"></i> Patients <span class="fa fa-chevron-right"></span></a>
+
+                 </li>
+                 
+                 <li><a><i class="fa fa-newspaper-o"></i> Profile <span class="fa fa-chevron-right"></span></a>
+
+                 </li>
+                 
+                 <li><a><i class="fa fa-desktop"></i> Messages <span class="fa fa-chevron-right"></span></a>
+                   
+                 </li>
+                  
+                 <li><a><i class="fa fa-calendar"></i>Appointments <span class="fa fa-chevron-right"></span></a>
+
+                 </li>
+                  
+                 <li><a ng-click="lgnCtrl.logout()"><i class="fa fa-power-off"></i> Logout <span class="fa fa-chevron-right"></span></a>
+                   
+                 </li>
+                 
                 
                 </ul>
               </div>
@@ -143,12 +189,18 @@
   <script src="../../node_modules/angular/angular.js"></script>
   <script src="../../node_modules/angular-route/angular-route.js"></script>
   <script src="../../node_modules/angular-jwt/dist/angular-jwt.js"></script>
+  <script src="../../node_modules/angular-base64-upload/dist/angular-base64-upload.min.js"></script>
   <script src="angular-app/index.js"></script>
   <script src="angular-app/landing/register-controller.js"></script>
   <script src="angular-app/landing/login-controller.js"></script>
   <script src="angular-app/profile/profile-controller.js"></script>
+  <script src="angular-app/patients/patients-controller.js"></script>
+  <script src="angular-app/doctor-dashboard/doctor-dashboard-controller.js"></script>
   <script src="../../bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
   <script src="angular-app/patient-data-factory/patient-data-factory.js"></script>
+  <script src="angular-app/doctor-data-factory/doctor-data-factory.js"></script>
+  <script src="angular-app/auth/auth-factory.js"></script>
+  <script src="angular-app/register/fileread.js"></script>
   
   	<!-- jQuery -->
     <script src="js/jquery.min.js"></script>

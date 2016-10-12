@@ -1,0 +1,101 @@
+<!-- page content -->
+        <div class="right_col" role="main" style="min-height: 610px;" ng-controller="PatientsController as ptntsCtrl">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Patients</h3>
+              </div>
+
+             
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <ul class="pagination pagination-split">
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('A')">A</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('B')">B</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('C')">C</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('D')">D</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('E')">E</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('F')">F</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('G')">G</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('H')">H</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('I')">I</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('J')">J</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('K')">K</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('L')">L</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('M')">M</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('N')">N</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('O')">O</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('P')">P</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('Q')">Q</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('R')">R</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('S')">S</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('T')">T</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('U')">U</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('V')">V</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('W')">W</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('X')">X</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('Y')">Y</a></li>
+                          <li><a ng-click="ptntsCtrl.getSpecificPatients('Z')">Z</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="clearfix"></div>
+
+                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details" ng-if="!ptntsCtrl.noRecords" ng-repeat="patient in ptntsCtrl.patients">
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            
+                            <div class="left col-xs-7">
+                              <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                              
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"></i> Address: {{patient.address_line1}}, {{patient.address_line2}}</li>
+                                <li><i class="fa fa-phone"></i> Phone #: {{patient.contact}}</li>
+                                <li><i class="fa fa-envelope"></i> Email: {{patient.email}}</li>
+                                <li><i class="fa fa-intersex"></i> Gender: {{patient.gender}}</li>
+                                <li><i class="fa fa-object-group"></i> Blood Group: {{patient.blood_type}}</li>
+                              </ul>
+                            </div>
+                            <div class="right col-xs-5 text-center">
+                              <img ng-if="patient.base64_image == null" src="../../images/user.png" alt="No Image" class="img-circle img-responsive">
+                              <img ng-if="patient.base64_image != null" ng-src="data:{{patient.file_type}};base64,{{patient.base64_image}}" alt="No Image" class="img-circle img-responsive">
+                            </div>
+                          </div>
+                          <div class="col-xs-12 bottom text-center">
+                            
+                            <div class="col-xs-12 col-sm-6 emphasis">
+                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>
+                              <button type="button" class="btn btn-primary btn-xs">
+                                <i class="fa fa-user"> </i> View EHR
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                      	<div ng-if="ptntsCtrl.noRecords" class="alert alert-danger" style="text-align: center" role="alert">
+						  <h4>{{ ptntsCtrl.response }}</h4>
+						</div>
+						<div ng-if="ptntsCtrl.errorOccured" class="alert alert-danger" style="text-align: center" role="alert">
+						  <h4>{{ ptntsCtrl.invalid }}</h4>
+						</div>
+
+
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->

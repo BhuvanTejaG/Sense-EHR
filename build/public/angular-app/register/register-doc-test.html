@@ -18,7 +18,7 @@
  -->
        
         <!-- page content -->
-        <div class="right_col" role="main">
+        <div class="right_col" role="main" ng-controller="LoginController as regCtrl">
           <div class="">
             
             <div class="page-title">
@@ -34,7 +34,7 @@
                  
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" ng-submit="lgnCtrl.signupDoctor()" novalidate>
+                    <form class="form-horizontal form-label-left" ng-submit="regCtrl.signupDoctor()" novalidate>
 
              
                       <span class="section">Clinical Address</span>
@@ -44,7 +44,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="add1_doc">Address Lane 1 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="add1_doc" ng-model="lgnCtrl.add1_doc" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="add1_doc" ng-model="regCtrl.add1_doc" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -52,7 +52,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="add2_doc">Address Lane 2 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="add2_doc" ng-model="lgnCtrl.add2_doc" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="add2_doc" ng-model="regCtrl.add2_doc" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -60,7 +60,7 @@
                             <label for="contact_doc" class="control-label col-md-3 col-sm-3 col-xs-12">Contact <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="tel" id="contact_doc" ng-model="lgnCtrl.contact_doc" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
+                              <input type="tel" id="contact_doc" ng-model="regCtrl.contact_doc" required="required"  pattern="^[0-9-+s()]*$"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
@@ -68,14 +68,14 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city_doc">City <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="city_doc" ng-model="lgnCtrl.city_doc" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="city_doc" ng-model="regCtrl.city_doc" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           
                            <div class="item form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">State <span class="required">*</span></label>
 	                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                          <select id="state_doc" ng-model="lgnCtrl.state_doc" required="required" class="select2_single form-control" tabindex="-1">
+	                          <select id="state_doc" ng-model="regCtrl.state_doc" required="required" class="select2_single form-control" tabindex="-1">
 	                          	<option value="">Please Choose</option>
 	                            <option value="AL">Alabama</option>
 								<option value="AK">Alaska</option>
@@ -136,7 +136,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip_doc">Zip Code <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="zip_doc" ng-model="lgnCtrl.zip_doc" pattern="(\d{5}([\-]\d{4})?)" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="zip_doc" ng-model="regCtrl.zip_doc" pattern="(\d{5}([\-]\d{4})?)" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
 
@@ -152,11 +152,7 @@
                               <img src="https://codiqa.com/static/images/v2/image.png" alt="image" style="position:     absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px">
 							</div>
 						   
-						    <!--<input type="file" id="image_doc" fileread="lgnCtrl.image_doc" accept="image/*"> -->
-						    
-						    <input type="file" ng-model="lgnCtrl.image_doc" id="image_doc" name="image_doc" accept="image/*" maxsize="8" base-sixty-four-input>
-						    <span ng-show="form.image_doc.$error.maxsize">Files must not exceed 8 KB</span>
-
+						    <input type="file" id="image_doc" fileread="regCtrl.image_doc" accept="image/*">
 				
                             </div>
                             </div>
@@ -165,13 +161,13 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="spec_doc">Specialization <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="spec_doc" ng-model="lgnCtrl.spec_doc" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="spec_doc" ng-model="regCtrl.spec_doc" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                            <div class="item form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required">*</span></label>
 	                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                          <select id="group" ng-model="lgnCtrl.gender_doc" required="required" class="select2_single form-control" tabindex="-1">
+	                          <select id="group" ng-model="regCtrl.gender_doc" required="required" class="select2_single form-control" tabindex="-1">
 	                            <option value="">Please Choose</option>
 	                            <option  value="Male">Male</option>
 							    <option value="Female">Female</option>

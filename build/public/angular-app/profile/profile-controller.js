@@ -1,6 +1,6 @@
 angular.module('sense-ehr').controller('ProfileController', ProfileController);
 
-function ProfileController($http, patientDataFactory) {
+function ProfileController($http, patientDataFactory, $window) {
 	
 	var vm = this;
 	vm.invalid= false;
@@ -50,7 +50,9 @@ function ProfileController($http, patientDataFactory) {
 		 
 		 console.log("Inside Load Method");
 		 
-		patientDataFactory.getPatientProfile(1).then(function(response) {
+		 var id = $window.sessionStorage.id;
+		 
+		patientDataFactory.getPatientProfile(id).then(function(response) {
 			if(response.status === 200) {
 				 vm.firstName=response.data[0].first_name;
 				 vm.lastName=response.data[0].last_name;

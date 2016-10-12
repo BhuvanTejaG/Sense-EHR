@@ -1,0 +1,108 @@
+<!-- page content -->
+        <div class="right_col" role="main" style="min-height: 610px;" ng-controller="DoctorDashboardController as ddashCtrl">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Doctor Dashboard</h3>
+              </div>
+
+             
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+			
+			
+				<div class="col-md-6 col-sm-6 col-xs-12">
+			           <div class="x_panel">
+			             <div class="x_title">
+			               <h2>Critical Patients Health <small>Last 7 Days</small></h2>
+			               
+			               <div class="clearfix"></div>
+			             </div>
+			             
+			             <div class="x_content">
+			             <!--  <canvas id="mylineChart"></canvas> -->
+			
+							<div id="mylineChart" style="min-width: 200px; max-width: 600px; height: 250px; margin: 0 auto"></div>
+
+			             </div>
+			           </div>
+			     </div>
+              
+
+	              <div class="col-md-6 col-sm-6 col-xs-12">
+	                <div class="x_panel">
+	                  <div class="x_title">
+	                    <h2>Appointment Count <small>Last 30 Days - By Week</small></h2>
+	                    
+	                    <div class="clearfix"></div>
+	                  </div>
+	                  <div class="x_content">
+	                    <canvas id="barChart"></canvas>
+	                  </div>
+	                </div>
+	              </div>
+            
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <div class="row">
+
+             <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel">
+                  <div class="row x_title">
+                    <div class="col-md-6">
+                      <h3>Network Activities <small>Graph title sub-title</small></h3>
+                    </div>
+
+                  </div>
+                  <div class="x_content">
+                    <div class="demo-container" style="height:250px">
+                      <div id="negativeChart" class="demo-placeholder" style="width: 100%; height:250px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+ 
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <div class="row">
+
+             <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel">
+                  <div class="row x_title">
+                    <div class="col-md-6">
+                      <h3>Blood Pressures <small>Patients with latest appointments</small></h3>
+                    </div>
+
+                  </div>
+                  <div class="x_content">
+                    <div class="demo-container" style="height:250px">
+                      <div id="columnChart" class="demo-placeholder" style="width: 100%; height:250px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+ 
+            </div>
+            
+          </div>
+          
+          <!-- Chart.js -->
+      <script src="../../js/Chart.min.js"></script> 
+      <!-- 
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+       -->
+	  <script src="https://code.highcharts.com/modules/exporting.js"></script>   
+          
+      <script>
+      
+    </script>
+    <!-- /Chart.js -->
+        </div>
+        <!-- /page content -->

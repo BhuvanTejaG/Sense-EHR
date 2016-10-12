@@ -31,4 +31,5 @@ exports.fetchData = function(callback, sqlQuery) {
 	connection.end();
 }
 
+
 exports.getConnection=getConnection;
