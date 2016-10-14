@@ -43,7 +43,7 @@ module.exports.FetchID = function(req,res){
 	  var userId = req.params.username;
 	  var type = req.params.type;
 	  
-		if(userId == "patient"){
+		if(type == "patient"){
 			 getid = "select * from patient where email = '"+userId+"'";
 		} else {
 			getid = "select * from doctor where email = '"+userId+"'";
@@ -74,7 +74,7 @@ module.exports.setProfile = function(req,res){
 	  var userId = req.params.user_id;
 	  var type = req.params.type;
 	  
-		if(userId == "patient"){
+		if(type == "patient"){
 			 getProfile = "select * from patient where patient_id = '"+userId+"'";
 		} else {
 			getProfile = "select * from doctor where doctor_id = '"+userId+"'";
@@ -273,7 +273,7 @@ module.exports.signupPatient = function(req, res) {
 		  base64 = user.image.base64;
 	  }
 
-	  var updatePatient = "update patient set emergency_contact = ?, emergency_contact_relationship = ?, emergency_contact_name = ?, emergency_contact_email = ?, birthdate = ?, gender = ?, blood_type = ?, address_line1 = ?, address_line2 = ?, contact = ?, city = ?, state = ?, country = ?, zip = ?, insurance_id = ?, insurance_provider = ?, race = ?, created_on = sysdate, base64_image = ?, file_type = ? where patient_id = ?";
+	  var updatePatient = "update patient set emergency_contact = ?, emergency_contact_relationship = ?, emergency_contact_name = ?, emergency_contact_email = ?, birthdate = ?, gender = ?, blood_type = ?, address_line1 = ?, address_line2 = ?, contact = ?, city = ?, state = ?, country = ?, zip = ?, insurance_id = ?, insurance_provider = ?, race = ?, created_on = now(), base64_image = ?, file_type = ? where patient_id = ?";
 	  
 	  var connection = mysql.getConnection();
 	  

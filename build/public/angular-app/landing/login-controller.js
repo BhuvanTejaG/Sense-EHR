@@ -40,7 +40,7 @@ function LoginController($http, $location, $window) {
   vm.login = function() {
 	  
 	  // Test
-	  vm.username = "doctor@gmail.com";
+	  vm.username = "patient@gmail.com";
 	  vm.password = "12345";
 	  
     if (vm.username && vm.password) {
@@ -75,10 +75,12 @@ function LoginController($http, $location, $window) {
         	        		$http.get('/api/users/FetchID/'+vm.username+'/'+'patient').then(function(response) {
         	        		
         	        		
+        	        			console.log('[]: Got status as %d from FetchID api',response.status);
+        	        			
         	        		if (response.status === 200) {
         	        		
         	        		
-        	        		$window.sessionStorage.id = response.data[0].doctor_id;
+        	        		$window.sessionStorage.id = response.data[0].patient_id;
             	        	
             	        	console.log('[]: userid isss::: %s', $window.sessionStorage.id);
             	        	
@@ -182,11 +184,11 @@ function LoginController($http, $location, $window) {
  vm.signUp = function() {
 	  
 	  // Test
-	  vm.username_signup = "doctor@gmail.com";
+	  vm.username_signup = "patient@gmail.com";
 	  vm.password_signup = "12345";
 	  vm.firstname_signup = "testfirst";
 	  vm.lastname_signup = "testlast";
-	  vm.type_signup = "doctor";
+	  vm.type_signup = "patient";
 	  
     if (vm.username_signup && vm.password_signup && vm.type_signup && vm.firstname_signup && vm.lastname_signup) {
     	
@@ -246,13 +248,13 @@ function LoginController($http, $location, $window) {
                 	
                 	else {
                 		
-                		$http.get('/api/users/FetchID/'+vvm.username_signup+'/'+'patient').then(function(response) {
+                		$http.get('/api/users/FetchID/'+vm.username_signup+'/'+'patient').then(function(response) {
         	        		
         	        		
         	        		if (response.status === 200) {
         	        		
         	        		
-        	        		$window.sessionStorage.id = response.data[0].doctor_id;
+        	        		$window.sessionStorage.id = response.data[0].patient_id;
             	        	
             	        	console.log('[]: userid isss::: %s', $window.sessionStorage.id);
             	        	
