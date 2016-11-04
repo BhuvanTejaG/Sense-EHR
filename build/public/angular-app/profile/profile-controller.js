@@ -1,58 +1,35 @@
 angular.module('sense-ehr').controller('ProfileController', ProfileController);
 
-function ProfileController($http, patientDataFactory, $window) {
+function ProfileController($http, $window, patientDataFactory, doctorDataFactory) {
 	
 	var vm = this;
+	
+	var userType = $window.sessionStorage.userType;
+	
+	
 	vm.invalid= false;
 	vm.success=false;
 	
-	 vm.onLoad = function() {
-		 
+	vm.onLoad = function() {
+		// To Toggle between patient and doctor 
+		
+	if($window.sessionStorage.userType == "patient"){
 		vm.isPatient=true;
-		vm.patientEdit=false;
-		vm.doctorEdit=false;
-		console.log(vm.patientEdit);
-		 
-			// For Patient
-		/* vm.firstName="ABC";
-		 vm.lastName="DEF";
-		 vm.bloodGroup="A +ve";
-		 vm.ethnicity="Indian";
-		 vm.email="Def@gmail.com"
-		 vm.gender="M";
-		 vm.birthday="08/22/1991";
-		 vm.address1="190 Ryl";
-		 vm.address2="3401";
-		 vm.contact="4059409343";
-		 vm.city="SJC";
-		 vm.state="CA";
-		 vm.zip="95110";
-		 vm.emergencyName="ABCDEFG";
-		 vm.emergencyContact="019330123213";
-		 vm.emergencyEmail="abc@gmail.com";
-		 vm.image="";
-		 */
-		 // For Doctor
-		 
-		 /*vm.firstName_doc="ABC";
-		 vm.lastName_doc="DEF";
-		 vm.specialization="Neurology";
-		 vm.email_doc="Def@gmail.com"
-		 vm.gender_doc="M";
-		 vm.birthday_doc="08/22/1991";
-		 vm.clinicName="ABC Clinic";
-		 vm.address1_doc="190 Ryl";
-		 vm.address2_doc="3401";
-		 vm.contact_doc="4059409343";
-		 vm.city_doc="SJC";
-		 vm.state_doc="CA";
-		 vm.zip_doc="95110";*/
-		 
-		 console.log("Inside Load Method");
-		 
-		 var id = $window.sessionStorage.id;
-		 
-		patientDataFactory.getPatientProfile(id).then(function(response) {
+	}
+	else{
+		
+		vm.isPatient=false;
+		
+	}
+	
+	vm.patientEdit=false;
+	vm.doctorEdit=false;
+	console.log(vm.patientEdit);
+	
+	console.log("Inside Load Method");
+	
+	if(vm.isPatient){
+		patientDataFactory.getPatientProfile(1).then(function(response) {
 			if(response.status === 200) {
 				 vm.firstName=response.data[0].first_name;
 				 vm.lastName=response.data[0].last_name;
@@ -72,15 +49,21 @@ function ProfileController($http, patientDataFactory, $window) {
 				 vm.emergencyContact=response.data[0].emergency_contact;
 				 vm.emergencyEmail=response.data[0].emergency_contact_email;
 				 vm.image=response.data[0].image;
-				
+				 vm.insurance_provider=response.data[0].insurance_provider;
+				 vm.insurance_id=response.data[0].insurance_id;
+				 
 				console.log(vm.firstName);
 			}
 		   
 		  }).catch(function(error) {
 		        console.log(error);
 	      });
-//TODO Add doctor select
-	 patientDataFactory.getDoctortProfile(1).then(function(response) {
+
+		}
+		else{
+		//TODO Add doctor select
+		
+		doctorDataFactory.getDoctorProfile(1).then(function(response) {
 			if(response.status === 200) {
 				
 				 vm.firstName_doc=response.data[0].first_name;
@@ -88,7 +71,8 @@ function ProfileController($http, patientDataFactory, $window) {
 				 vm.specialization=response.data[0].specialization;
 				 vm.email_doc=response.data[0].email;
 				 vm.gender_doc=response.data[0].gender;
-				 vm.birthday_doc=response.data[0].birthday.split("T")[0];
+				// vm.birthday_doc=response.data[0].birthday.split("T")[0];
+				 vm.clinicName=response.data[0].clinic_name;
 				 vm.address1_doc=response.data[0].clinic_address1;
 				 vm.address2_doc=response.data[0].clinic_address2;
 				 vm.contact_doc=response.data[0].phone;
@@ -102,10 +86,14 @@ function ProfileController($http, patientDataFactory, $window) {
 				
 				console.log(response.data);
 			}
+			else{
+				console.log(error);
+			}
 		   
 		  }).catch(function(error) {
 		        console.log(error);
 	      });
+		}
 	};
 	 
 	 	 
@@ -119,37 +107,40 @@ function ProfileController($http, patientDataFactory, $window) {
 		 	vm.isPatient=false;
 		 	vm.doctorEdit=true;
 		 	vm.patientEdit=false;
-		 
 	 }
 	 
 	 vm.updatePatientDetails = function() {
 		 	vm.patientEdit=false;
 			vm.isPatient=true;
 			vm.doctorEdit=false;
-		  var patient = {
-				  	 patientId:"",
-				  	 firstName:vm.firstName,
-					 lastName:vm.lastName,
+		  
+			var patient = {
+				  	 patient_id:$window.sessionStorage.id,
+				  	 first_name:vm.firstName,
+					 last_name:vm.lastName,
 					 email:vm.email,
-					 bloodGroup:vm.bloodGroup,
-					 ethnicity:vm.ethnicity,
+					 blood_type:vm.bloodGroup,
+					 race:vm.ethnicity,
 					 gender:vm.gender,
-					 birthday:vm.birthday,
-					 add1:vm.address1,
-					 add2:vm.address2,
+					 birthdate:vm.birthday,
+					 address_line1:vm.address1,
+					 address_line2:vm.address2,
 					 contact:vm.contact,
 					 city:vm.city,
 					 state:vm.state,
 					 zip:vm.zip,
-					 emergencyName:vm.emergencyName,
-					 emergencyContact:vm.emergencyContact,
-					 emergencyEmail:vm.emergencyEmail,
-					 image:vm.image
+					 emergency_contact_name:vm.emergencyName,
+					 emergency_contact:vm.emergencyContact,
+					 emergency_contact_email:vm.emergencyEmail,
+					 image:vm.image,
+					 insurance_provider:vm.insurance_provider,
+					 insurance_id:vm.insurance_id			 
 		  };
 		  //TODO Add this API in URL  
 		  patientDataFactory.updatePatientProfile(patient).then(function(response) {
-				if(response.status === 200) {
-					 console.log(result);
+				
+			  if(response.status === 200) {
+					 console.log(response.data);
 		            vm.response = 'Patient Details Updated Successfully..!!';
 		            vm.success= true;
 				}
@@ -166,11 +157,10 @@ function ProfileController($http, patientDataFactory, $window) {
 			vm.isPatient=false;
 			vm.doctorEdit=false;
 			
-		 alert("HI"+vm.email_doc);
-		  var patient = {
-				  	 doctorId:"",
-				  	 firstName:vm.firstName_doc,
-					 lastName:vm.lastName_doc,
+		  var doctor = {
+				  	 doctor_id:$window.sessionStorage.id,
+				  	 first_name:vm.firstName_doc,
+					 last_name:vm.lastName_doc,
 					 email:vm.email_doc,
 					 specialization:vm.specialization,
 					 gender:vm.gender_doc,
@@ -181,18 +171,23 @@ function ProfileController($http, patientDataFactory, $window) {
 					 city:vm.city_doc,
 					 state:vm.state_doc,
 					 zip:vm.zip_doc,
-					 image:vm.image_doc
+					 image:vm.image_doc,
+					 clinicName:vm.clinicName
 		  };
 	
-		  $http.post('/api/users/updateDoctor', patient).then(function(result) {
-		            console.log(result);
-		            vm.response = 'Doctor Details Updated Successfully..!!';
-		            vm.success= true;
-		          }).catch(function(error) {
-		        	vm.response = 'Doctor Details Not Updated !!';
+		  doctorDataFactory.updateDoctorProfile(doctor).then(function(response) {
+				
+			  if(response.status === 200) {
+					 console.log(response.data);
+				      vm.response = 'Doctor Details Updated Successfully..!!';
+			          vm.success= true;
+				}
+			  }).catch(function(error) {
+				  	vm.response = 'Doctor Details Not Updated !!';
 			        vm.invalid= true;
 		            console.log(error);
-		          });
+		   });
+
 	 	};
 	};	  
 

@@ -21,6 +21,9 @@ function config($httpProvider, $routeProvider) {
     .when('/showDoctorDashboard', {
       templateUrl: 'angular-app/doctor-dashboard/doctor-dashboard.html'
     })
+    .when('/showPatientDashboard', {
+      templateUrl: 'angular-app/patient-dashboard/patient-dashboard.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

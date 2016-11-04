@@ -25,24 +25,29 @@
 		<h3>Profile Details</h3>
 	</div>
 	</div>
-
+	<br><br>
 
 <!-- page content -->
- 
-	<div ng-if="profile.success">
-		<h4><span class="label label-success">{{ profile.response }}</span></h4>
-	</div>
-	<div ng-if="profile.invalid" >
-		<h4><span class="label label-danger">{{ profile.response }}</span></h4>
-	</div>
+	 <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="profile.success">
+	       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+	       </button>
+	       <strong>{{ profile.response }}</strong>
+     </div>
+	
+	<div class="alert alert-danger alert-dismissible fade in"  ng-if="profile.invalid" role="alert">
+	      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+	      </button>
+	      <strong>{{ profile.response }}</strong>
+    </div>
 
+  
 	<div class="clearfix"></div>
 	<!--   Read Only Patient Form  -->
 	<div ng-if="!profile.patientEdit && profile.isPatient">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
-					<form id="form1" data-parsley-validate
+					<form id="form1" name="form1" data-parsley-validate
 						class="form-horizontal form-label-left">
 
 						<div class="x_title">
@@ -118,6 +123,24 @@
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 								<h5>{{profile.birthday}}
+									</h5> 
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Provider :
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+								<h5>{{profile.insurance_provider}}
+									</h5> 
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Id :
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+								<h5>{{profile.insurance_id}}
 									</h5> 
 								</div>
 							</div>
@@ -271,7 +294,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
-					<form id="form1" data-parsley-validate
+					<form id="form2" name="form2" data-parsley-validate
 						class="form-horizontal form-label-left">
 
 						<div class="x_title">
@@ -358,9 +381,9 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div id="gender" class="btn-group" data-toggle="buttons">
 										<p>
-											M: <input type="radio" ng-model="profile.gender" value="M"
+											M: <input type="radio" ng-model="profile.gender" value="Male"
 												class="flat" name="gender" id="genderM" required /> F: <input
-												ng-model="profile.gender" value="F" required="required"
+												ng-model="profile.gender" value="Female" required="required"
 												type="radio" class="flat" name="gender" id="genderF"
 												required />
 										</p>
@@ -378,6 +401,29 @@
 										required="required" type="text">
 								</div>
 							</div>
+
+
+						<div class="form-group">
+								<label for="ethnicity"
+									class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Provider<span
+									class="required">*</span></label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input id="insurance_name" ng-model="profile.insurance_provider"
+										required="required" class="form-control col-md-7 col-xs-12"
+										type="text" name="insuranceName">
+								</div>
+							</div>
+							
+						<div class="form-group">
+							<label for="ethnicity"
+									class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Id<span
+									class="required">*</span></label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input id="insurance_id" ng-model="profile.insurance_id"
+									required="required" class="form-control col-md-7 col-xs-12"
+									type="tel" pattern="^[0-9-+s()]*$" name="insuranceId">
+							</div>
+						</div>
 
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -579,14 +625,9 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<button type="submit" class="btn btn-success"
-										ng-disabled="form1.$pristine" ng-click="profile.updatePatientDetails()">Update
+										ng-disabled="form2.$pristine|| form2.$invalid" ng-click="profile.updatePatientDetails()">Update
 										Details</button>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<button type="submit" class="btn btn-success"
+									<button type="submit" class="btn btn-primary"
 										ng-click="profile.onLoad()">Cancel
 										</button>
 								</div>
@@ -660,15 +701,6 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Gender :</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<h5>{{profile.gender_doc}}
-									</h5> 
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Date
-									Of Birth :
-								</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<h5>{{profile.birthday_doc}}
 									</h5> 
 								</div>
 							</div>
@@ -795,7 +827,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
-					<form id="form4" data-parsley-validate
+					<form id="form4" name="form4" data-parsley-validate
 						class="form-horizontal form-label-left">
 
 						<div class="x_title">
@@ -857,21 +889,11 @@
 									<div id="gender" class="btn-group" data-toggle="buttons">
 										<p>
 											M: <input type="radio" ng-model="profile.gender_doc"
-												value="M" class="flat" name="gender" id="genderM" /> F: <input
-												type="radio" ng-model="profile.gender_doc" value="F"
+												value="Male" class="flat" name="gender" id="genderM" /> F: <input
+												type="radio" ng-model="profile.gender_doc" value="Female"
 												class="flat" name="gender" id="genderF" />
 										</p>
 									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Date
-									Of Birth <span class="required">*</span>
-								</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input id="birthday" ng-model="profile.birthday_doc"
-										class="date-picker form-control col-md-7 col-xs-12"
-										required="required" type="text">
 								</div>
 							</div>
 
@@ -1045,14 +1067,9 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<button type="submit" class="btn btn-success"
-										ng-disabled="form4.$pristine" ng-click="profile.updateDoctorDetails()">Update
+										 ng-disabled="form4.$pristine|| form4.$invalid"  ng-click="profile.updateDoctorDetails()">Update
 										Details</button>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<button type="submit" class="btn btn-success"
+									<button type="submit" class="btn btn-primary"
 										ng-click="profile.onLoad()">Cancel
 										</button>
 								</div>

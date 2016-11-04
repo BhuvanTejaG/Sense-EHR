@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<div class="right_col" role="main" ng-controller="PatientDashboardController as dashboard" data-ng-init="dashboard.onLoad()">
+<div class="clearfix"></div><br>
+            <div class="row top_tiles">
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-heart"></i></div>
+                  <div class="count">{{dashboard.sp}} mm Hg</div>
+                  <h3>Latest Systolic Pressure</h3>
+                </div>
+              </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-heart-o"></i></div>
+                  <div class="count">{{dashboard.dp}} mm Hg</div>
+                  <h3>Latest Diastolic Pressure</h3>
+                </div>
+              </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-tachometer"></i></div>
+                  <div class="count">{{dashboard.steps}}</div>
+                  <h3>Step count</h3>
+                </div>
+              </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-signal"></i></div>
+                  <div class="count">{{dashboard.cal}} Cal</div>
+                  <h3>Calories Burnt Today</h3>
+                </div>
+              </div>
+		</div>
+<br>
+
+	<div class="col-md-6 col-sm-12 col-xs-12">
+	  <div class="x_panel">
+                  <div class="x_title">
+					<div id="container" style="min-width: 310px;  margin: 0 auto">
+					</div>
+				</div>
+		</div>
+	</div>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+		  <div class="x_panel">
+	                  <div class="x_title">
+						<div id="steps" style="min-width: 310px;  margin: 0 auto">
+						</div>
+					</div>
+		</div>
+	</div>    
+    
+    <div class="col-md-12 col-sm-12 col-xs-12" >
+                <div class="x_panel" >
+                  <div class="x_title">
+                    <h2>Current Medication</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" >
+                    <table id="datatable" class="table table-striped table-bordered" ng-show="dashboard.medicationData">
+                      <thead>
+                        <tr>
+                          <th>Drug Name</th>
+                          <th>Usage</th>
+                          <th>Description</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        <tr ng-repeat="m in dashboard.medication" >
+                          <td>{{m.drug_name}}</td>
+                          <td>{{m.usage}}</td>
+                          <td>{{m.description}}</td>
+                          <td>{{m.start_date.split("T")[0]}}</td>
+                          <td>{{m.end_date.split("T")[0]}}</td>
+                        </tr>
+                      </tbody>
+                    
+                    </table>
+                    <div ng-show="!dashboard.medicationData"> No Data Available for This Patient</div>
+                  </div>
+                </div>
+      </div>
+     
+	 <div class="col-md-6 col-sm-12 col-xs-12">
+		  <div class="x_panel">
+	                  <div class="x_title">
+						<div id="weight" style="min-width: 310px;  margin: 0 auto">
+						</div>
+					</div>
+		</div>
+	</div>    
+ 	<div class="col-md-6 col-sm-12 col-xs-12">
+		  <div class="x_panel"> 
+	                  <div class="x_title">
+						<div id="health" style="min-width: 310px;  margin: 0 auto">
+						</div>
+					</div>
+		</div>
+	</div>  
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		  <div class="x_panel"> 
+	                  <div class="x_title">
+						<div id="pieChart" style="min-width: 310px;  margin: 0 auto">
+						</div>
+					</div>
+		</div>
+	</div>  
+    	<div class="col-md-6 col-sm-12 col-xs-12">
+		  <div class="x_panel"> 
+	                  <div class="x_title">
+						<input type="text" name="daterange" value="01/01/2015 - 01/31/2015" />
+						<div id="multipleAxisChart" style="min-width: 310px;  margin: 0 auto">
+						</div>
+			</div>
+		</div>
+</div>  
+</div>
+
+

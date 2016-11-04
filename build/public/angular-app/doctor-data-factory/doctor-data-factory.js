@@ -6,7 +6,9 @@ function doctorDataFactory($http) {
     getSpecificPatients: getSpecificPatients,
     getAppointmentCount: getAppointmentCount,
     getBloodPressures:getBloodPressures,
-    getLimitedBP:getLimitedBP
+    getLimitedBP:getLimitedBP,
+	getDoctorProfile: getDoctorProfile,
+    updateDoctorProfile: updateDoctorProfile
   };
 
 
@@ -28,6 +30,14 @@ function doctorDataFactory($http) {
   
   function getLimitedBP(doctor_id) {
     return $http.get('/api/doctor/limitedBP/' + doctor_id).then(complete).catch(failed);
+  }
+  
+  function getDoctorProfile(doctor_id) {
+    return $http.get('/api/doctor/profile/' + doctor_id).then(complete).catch(failed);
+  }
+	  
+  function updateDoctorProfile(doctor) {
+    return $http.post('/api/doctor/profile/',doctor).then(complete).catch(failed);
   }
   
   

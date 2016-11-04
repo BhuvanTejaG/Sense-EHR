@@ -84,7 +84,7 @@
 				
                 <ul class="nav side-menu" ng-show="!lgnCtrl.isDoctor">
                 
-                 <li><a><i class="fa fa-bar-chart-o"></i> DashBoard <span class="fa fa-chevron-right"></span></a>
+                 <li><a ng-click="lgnCtrl.showPatientDashboard()"><i class="fa fa-bar-chart-o"></i> DashBoard <span class="fa fa-chevron-right"></span></a>
 
                   </li>
                   
@@ -93,7 +93,7 @@
                    
                   </li>
                   
-                  <li><a><i class="fa fa-newspaper-o"></i> Profile <span class="fa fa-chevron-right"></span></a>
+                  <li><a ng-click="lgnCtrl.showProfile()"><i class="fa fa-newspaper-o"></i> Profile <span class="fa fa-chevron-right"></span></a>
                    
                    
                   </li>
@@ -124,7 +124,7 @@
 
                  </li>
                  
-                 <li><a><i class="fa fa-newspaper-o"></i> Profile <span class="fa fa-chevron-right"></span></a>
+                 <li><a  ng-click="lgnCtrl.showProfile()"><i class="fa fa-newspaper-o"></i> Profile <span class="fa fa-chevron-right"></span></a>
 
                  </li>
                  
@@ -195,12 +195,16 @@
   <script src="angular-app/landing/login-controller.js"></script>
   <script src="angular-app/profile/profile-controller.js"></script>
   <script src="angular-app/patients/patients-controller.js"></script>
+  <script src="angular-app/patient-dashboard/patient-dashboard-controller.js"></script>
   <script src="angular-app/doctor-dashboard/doctor-dashboard-controller.js"></script>
   <script src="../../bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
   <script src="angular-app/patient-data-factory/patient-data-factory.js"></script>
   <script src="angular-app/doctor-data-factory/doctor-data-factory.js"></script>
   <script src="angular-app/auth/auth-factory.js"></script>
   <script src="angular-app/register/fileread.js"></script>
+  
+  
+  
   
   	<!-- jQuery -->
     <script src="js/jquery.min.js"></script>
@@ -215,5 +219,40 @@
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.min.js"></script>
+    
+    
+      
+    <!--   HIGH CHARTS -->
+   	<link rel="stylesheet" type="text/css" href="https://www.highcharts.com/samples/static/highslide.css" />
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	
+	<!-- Additional files for the Highslide popup effect -->
+	<script src="https://www.highcharts.com/samples/static/highslide-full.min.js"></script>
+	<script src="https://www.highcharts.com/samples/static/highslide.config.js" charset="utf-8"></script>
+
+
+
+	<!--  DATA TABLE FILES --> 
+    
+    <!--  DATA TABLE FILES --> 
+    <link href="js/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="js/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+
+    
+    <!--  DATA TABLE FILES --> 
+    <script src="js/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="js/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="js/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    
+    <!--   DATE RANGE PICKER SRCS -->
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    
   
 </html>

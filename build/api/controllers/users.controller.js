@@ -207,11 +207,11 @@ module.exports.insertSignupDetails = function(req, res) {
 			  base64 = user.image.base64;
 		  }
 		  
-		  var updateDoctor = "update doctor set phone = ?, specialization = ?, isActive = 'Yes', clinic_address1 = ?, clinic_address2 = ?, city = ?, state = ?, country = ?, zip = ?, base64_image = ?, file_type = ? where doctor_id = ?"; //, doctor_image = ?
+		  var updateDoctor = "update doctor set phone = ?, specialization = ?, isActive = 'Yes', clinic_address1 = ?, clinic_address2 = ?, city = ?, state = ?, country = ?, zip = ?, base64_image = ?, file_type = ?, gender = ?, clinic_name = ? where doctor_id = ?"; //, doctor_image = ?
 		  
 		  var connection = mysql.getConnection();
 		  
-		  connection.query(updateDoctor, [user.contact, user.spec, user.add1, user.add2, user.city, user.state, user.country, user.zip, base64, file_type, user.id],  function(err, result) {
+		  connection.query(updateDoctor, [user.contact, user.spec, user.add1, user.add2, user.city, user.state, user.country, user.zip, base64, file_type, user.gender, user.clinic, user.id],  function(err, result) {
 
 				if (err) {
 					

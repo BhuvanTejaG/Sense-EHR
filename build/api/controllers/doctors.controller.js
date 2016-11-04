@@ -248,3 +248,132 @@ module.exports.getLimitedBP = function(req,res){
 		 
 	},query);
 };
+
+// Murthy API's
+module.exports.getDoctorProfile = function(req,res){
+
+	var docId=req.params.doctor_id;
+	
+	console.log("[]: Doctor id isss::: %s",docId);
+	query = "select * from doctor where doctor_id = '"+docId+"'";
+	
+	mysql.fetchData(function(err,results){
+		if(err){
+			res
+				.status(500)
+				.json(err);
+		}
+		else 
+		{
+			console.log(JSON.stringify(results));
+			
+			res
+				.status(200)
+				.json(results);
+		}  
+	},query);
+};
+
+module.exports.updateDoctorProfile = function(req,res){
+
+	var doctor_id=req.body.doctor_id;
+	console.log(doctor_id);
+	
+  	var first_name=req.body.first_name;
+  	var last_name=req.body.last_name;
+  	var email=req.body.email;
+  	var specialization=req.body.specialization;
+  	var gender=req.body.gender;
+  	//var birthday=req.body.birthday;
+  	var address_line1=req.body.add1;
+  	var address_line2=req.body.add2;
+  	var contact=req.body.contact;
+  	var city=req.body.city;
+  	var state=req.body.state;
+  	var zip=req.body.zip;
+  	var image=req.body.image;
+  	var clinicName=req.body.clinicName;
+	
+	console.log("[]: Doctor id isss::: %s",doctor_id);
+
+	var queryDoctor="select email from doctor where doctor_id='"+doctor_id+"'";
+	
+	
+	// To get the email ID from login table if - different update that
+	mysql.fetchData(function(err,results){
+		if(err){
+			res
+				.status(500)
+				.json(err);
+		}
+		else 
+		{
+			console.log(JSON.stringify(results));
+			
+			if(results[0].email===email){
+				console.log("Doctor Email is Same in Login table");
+				
+				var query = "update doctor set first_name='"+first_name+"',last_name='"+last_name+"',email='"+email+"',specialization='"+specialization+"'," +
+							"gender='"+gender+"',clinic_address1='"+address_line1+"',clinic_address2='"+address_line2+"',phone='"+contact+"'," +
+							"city='"+city+"',state='"+state+"',zip='"+zip+"',image='"+image+"',clinic_name='"+clinicName+"'  " +
+							"where doctor_id = '"+doctor_id+"'";
+				
+				console.log(query);	
+				var connection = mysql.getConnection();
+					connection.query(query, function(err, rows, fields) {
+						if(err){
+							res
+							.status(500)
+							.json(err);
+						}
+						else{
+							console.log("Updated Successfully");
+							res
+							.status(200)
+							.json(rows);
+						}
+						connection.end();
+					});					
+		}
+			else{
+				
+				var updateEmailDoctor="update doctor set email='"+email+"' where email='"+results[0].email+"'";
+	
+				mysql.fetchData(function(err,results){
+					if(err){
+						res
+							.status(500)
+							.json(err);
+					}
+					else 
+					{
+						console.log(JSON.stringify(results));
+						console.log("Doctor Email Updated in Login table");
+						
+						var query = "update doctor set first_name='"+first_name+"',last_name='"+last_name+"',email='"+email+"',specialization='"+specialization+"'," +
+						"gender='"+gender+"',clinic_address1='"+address_line1+"',clinic_address2='"+address_line2+"',phone='"+contact+"'," +
+						"city='"+city+"',state='"+state+"',zip='"+zip+"',image='"+image+"',clinic_name='"+clinicName+"'  " +
+						"where doctor_id = '"+doctor_id+"'";
+		
+						
+						var connection = mysql.getConnection();
+							connection.query(query, function(err, rows, fields) {
+								if(err){
+									res
+									.status(500)
+									.json(err);
+								}
+								else{
+									res
+									.status(200)
+									.json(rows);
+								}
+								connection.end();
+							});	
+					}
+					},updateEmailDoctor);
+					}
+			}
+	 },queryDoctor);
+};
+//Murthy API's'

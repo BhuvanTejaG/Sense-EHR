@@ -40,7 +40,7 @@ function LoginController($http, $location, $window) {
   vm.login = function() {
 	  
 	  // Test
-	  vm.username = "patient@gmail.com";
+	  vm.username = "testsecond@gmail.com";
 	  vm.password = "12345";
 	  
     if (vm.username && vm.password) {
@@ -101,6 +101,9 @@ function LoginController($http, $location, $window) {
         	        	
         	        	//$location.path('angular-app/register/register.html');
         	        }
+        	        
+        	    	$window.sessionStorage.userType = "patient";
+        	    	
         	      }).catch(function(error) {
         	    	console.log('[]: Got into error block of patient signup api');
         	        console.log(error);
@@ -152,6 +155,8 @@ function LoginController($http, $location, $window) {
         	        
     	        	vm.isDoctor = true;
     	        	
+    	        	$window.sessionStorage.userType = "doctor";
+    	        	
         	      }).catch(function(error) {
         	    	console.log('[]: Got into error block of doctor signup api');
         	        console.log(error);
@@ -176,6 +181,7 @@ function LoginController($http, $location, $window) {
     vm.isSignedUp = false;
     vm.isDoctor = false;
     delete $window.sessionStorage.id;
+	delete $window.sessionStorage.userType;
     $location.path('/');
   }
  
@@ -226,6 +232,8 @@ function LoginController($http, $location, $window) {
         	        		
         	        		
         	        		$window.sessionStorage.id = response.data[0].doctor_id;
+        	        		
+        	        		$window.sessionStorage.userType = "doctor";
             	        	
             	        	console.log('[]: userid isss::: %s', $window.sessionStorage.id);
             	        	
@@ -255,6 +263,8 @@ function LoginController($http, $location, $window) {
         	        		
         	        		
         	        		$window.sessionStorage.id = response.data[0].patient_id;
+        	        		
+        	        		$window.sessionStorage.userType = "patient";
             	        	
             	        	console.log('[]: userid isss::: %s', $window.sessionStorage.id);
             	        	
@@ -414,6 +424,7 @@ function LoginController($http, $location, $window) {
 
 	  var doctor = {
 			  id: $window.sessionStorage.id,
+			  clinic: vm.cli_name,
 			  add1: vm.add1_doc,
 			  add2: vm.add2_doc,
 			  contact: vm.contact_doc,
@@ -431,7 +442,7 @@ function LoginController($http, $location, $window) {
   
 
 
-  if (!vm.add1_doc || !vm.add2_doc || !vm.contact_doc || !vm.city_doc || !vm.state_doc || !vm.zip_doc || !vm.gender_doc || !vm.spec_doc ) {
+  if (!vm.cli_name || !vm.add1_doc || !vm.add2_doc || !vm.contact_doc || !vm.city_doc || !vm.state_doc || !vm.zip_doc || !vm.gender_doc || !vm.spec_doc ) {
 
 	  console.log('unsuccessful');
 	 
@@ -532,5 +543,15 @@ function LoginController($http, $location, $window) {
 	  
 	  $location.path('/showDoctorDashboard');
   }
+ 
+ vm.showPatientDashboard = function() { 
+	  
+	  $location.path('/showPatientDashboard');
+ }
+ 
+ vm.showProfile = function() { 
+	  
+	  $location.path('/profile');
+}
   
 }

@@ -10,6 +10,26 @@ router
   .route('/patient/profile/:patient_id')
   .get(ctrlPatients.getProfile);
 
+router
+	.route('/patient/profile/')
+	.post(ctrlPatients.updatePatientProfile);
+
+router
+	.route('/patient/getBloodPressure/:patient_id')
+	.get(ctrlPatients.getBloodPressure);
+
+router
+	.route('/patient/getPatientMedication/:patient_id')
+	.get(ctrlPatients.getPatientMedication);
+
+router
+	.route('/patient/getPatientStepsAndWeight/:patient_id')
+	.get(ctrlPatients.getPatientStepsAndWeight);
+
+router
+	.route('/patient/getHealthStatus/:patient_id')
+	.get(ctrlPatients.getHealthStatus);
+
 
 // Doctor routes
 router
@@ -31,6 +51,14 @@ router
 router
 	.route('/doctor/specificPatients/:doctor_id/:letter')
 	.get(ctrlDoctors.getSpecificPatients);
+
+router
+	.route('/doctor/profile/:doctor_id')
+	.get(ctrlDoctors.getDoctorProfile);
+
+router
+	.route('/doctor/profile/')
+	.post(ctrlDoctors.updateDoctorProfile);
 
 
 // Authentication
