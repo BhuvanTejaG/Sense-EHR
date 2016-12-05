@@ -134,7 +134,8 @@ function ProfileController($http, $window, patientDataFactory, doctorDataFactory
 					 emergency_contact_email:vm.emergencyEmail,
 					 image:vm.image,
 					 insurance_provider:vm.insurance_provider,
-					 insurance_id:vm.insurance_id			 
+					 insurance_id:vm.insurance_id,
+					 image: vm.image_pat || null
 		  };
 		  //TODO Add this API in URL  
 		  patientDataFactory.updatePatientProfile(patient).then(function(response) {
@@ -172,7 +173,8 @@ function ProfileController($http, $window, patientDataFactory, doctorDataFactory
 					 state:vm.state_doc,
 					 zip:vm.zip_doc,
 					 image:vm.image_doc,
-					 clinicName:vm.clinicName
+					 clinicName:vm.clinicName,
+					 image: vm.image_doc || null
 		  };
 	
 		  doctorDataFactory.updateDoctorProfile(doctor).then(function(response) {

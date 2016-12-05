@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<div class="right_col" role="main" ng-controller="appointmentController as appoint" style="min-height: 700px;">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Book Appointment</h3>
+        </div>
+    </div>
+
+    
+
+    <br><br>
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <div class="panel panel-default" id ="doctorCriteria" >
+              <div ng-show="appoint.successMsg">
+              		  		<h1>Successfully booked the appointment</h1>
+            			</div>
+            			<div class="alert alert-danger" ng-show='appoint.errorPanel'>
+			        		<span class="glyphicon glyphicon-exclamation-sign"></span>
+			       		 Error: {{appoint.err}}
+  			    		</div>
+                <div class="panel-body">
+                
+                    <div class="row">
+                        <div class="col-lg-6" ng-show = "appoint.selectShow">
+                            <form role="form">
+                                <div class="form-group" >
+                                    <label class = "col-sm-6 control-label">Date:
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class = "col-sm-6">
+                                        <input datetime-picker date-format="yyyy-MM-dd HH:mm:ss" class="form-control" ng-model="appoint.date" placeholder="Enter Date">
+                                    </div>
+                                    <br>
+                                    <br>
+
+                                        <label class="col-sm-6 control-label">State:
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <select id="state" ng-model="appoint.state_doc"
+                                                    required="required" class="select2_single form-control"
+                                                    tabindex="-1" ng-change="appoint.doctorCity()">
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="CT">Connecticut</option>
+                                                <option value="DE">Delaware</option>
+                                                <option value="DC">District Of Columbia</option>
+                                                <option value="FL">Florida</option>
+                                                <option value="GA">Georgia</option>
+                                                <option value="HI">Hawaii</option>
+                                                <option value="ID">Idaho</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IN">Indiana</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="ME">Maine</option>
+                                                <option value="MD">Maryland</option>
+                                                <option value="MA">Massachusetts</option>
+                                                <option value="MI">Michigan</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="MT">Montana</option>
+                                                <option value="NE">Nebraska</option>
+                                                <option value="NV">Nevada</option>
+                                                <option value="NH">New Hampshire</option>
+                                                <option value="NJ">New Jersey</option>
+                                                <option value="NM">New Mexico</option>
+                                                <option value="NY">New York</option>
+                                                <option value="NC">North Carolina</option>
+                                                <option value="ND">North Dakota</option>
+                                                <option value="OH">Ohio</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="OR">Oregon</option>
+                                                <option value="PA">Pennsylvania</option>
+                                                <option value="RI">Rhode Island</option>
+                                                <option value="SC">South Carolina</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="UT">Utah</option>
+                                                <option value="VT">Vermont</option>
+                                                <option value="VA">Virginia</option>
+                                                <option value="WA">Washington</option>
+                                                <option value="WV">West Virginia</option>
+                                                <option value="WI">Wisconsin</option>
+                                                <option value="WY">Wyoming</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                <br>
+                                <br>
+                                    <label class = "col-sm-6 control-label" ng-show ="appoint.cityShow" >City:
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="form-group col-sm-6" ng-show="appoint.resultsExist">
+                                            <select class="form-control" ng-model="appoint.city" ng-change="appoint.docSpecialization()">
+                                                <option ng-repeat="row in appoint.cities">{{row.city}}</option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group col-md-8" ng-show="appoint.resultsNotExist">
+                                            <p class="form-control-static">No matches in cities for the given search string!</p>
+                                    </div>
+                                    <br>
+                                    <br>
+                                <div ng-show="appoint.specShow">
+                                    <label class = "col-sm-6 control-label">Specialization:
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class = "col-sm-6">
+                                        <select id = "specialization" ng-model = "appoint.specialization" class="form-control" ng-change="appoint.doctorFunc()">
+                                            <option ng-repeat="row in appoint.specs">{{row.specialization}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                <div ng-show="appoint.doctorShow" class="col-lg-6">
+                    <br>
+                    <br>
+                    <label class="col-md-6">Available Doctors:</label>
+                    <div class="col-md-6">
+                        <select id="doctorSelect" ng-model= "appoint.doctorSelect" class="form-control" ng-change = "appoint.doctorAddress()">
+                            <option ng-repeat="doctor in appoint.doctors" value="{{doctor.doctor_id}}">{{doctor.first_name}} {{doctor.last_name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                    <div ng-show="appoint.addressShow" class="panel-body col-lg-12">
+
+                            <label class="col-md-3">Address :
+                            </label>
+                            <div class="col-md-3">
+                                <h5>{{appoint.doctorAddr}}
+                                </h5>
+                            </div><br>
+                        <br>
+                        <div style = "text-align: center" class="col-lg-6">
+                            <button type="submit" class="btn btn-info" ng-click="appoint.next()">
+                                Next
+                            </button>
+                        </div>
+
+                    </div>
+
+                        <div ng-show = "appoint.detailShow" class =" panel-body center-block">
+                            <h3>Fill in the details</h3>
+                            <div class="form-group col-lg-12">
+                                    <label class="control-label col-md-6 ">Height :
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="height" ng-model='appoint.height' placeholder="Enter Height" required>
+                                    </div>
+                                <br>
+                                <br>
+                                    <label class="control-label col-md-6 ">Weight :
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="weight" ng-model='appoint.weight' placeholder="Enter Weight" required>
+                                    </div>
+                                <br>
+                                <br>
+                                    <label class="control-label col-md-6 ">Reason :
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select id = "reason" ng-model = "appoint.reason" class="form-control" placeholder="Select Reason" required>
+                                            <option value="Acne">Acne</option>
+                                            <option value="Allergy">Allergy Symptoms</option>
+                                            <option value="Asthma">Asthma</option>
+                                            <option value="Bite">Bite,Insect</option>
+                                            <option value="Breast">Breast Problem</option>
+                                            <option value="Chest">Chest Congestion</option>
+                                            <option value="Cold">Cold Symptoms</option>
+                                            <option value="Constipation">Constipation</option>
+                                            <option value="Cough">Cough</option>
+                                            <option value="Diabetes">Diabetes</option>
+                                            <option value="Ear">Ear Problem</option>
+                                            <option value="Fatigue">Fatigue</option>
+                                            <option value="Finger">Finger Pain</option>
+                                            <option value="GenitalF">Genital Problem(Female)</option>
+                                            <option value="GenitalM">Genital Problem(Male)</option>
+                                            <option value="Hair">Hair Loss</option>
+                                            <option value="Hand">Hand pain</option>
+                                            <option value="Headache">Headache</option>
+                                            <option value="HighBP">High Blood Pressure</option>
+                                            <option value="HighC">High Cholesterol</option>
+                                            <option value="Jaw">Jaw Pain</option>
+                                            <option value="Lump">Lump/Bump/Growth</option>
+                                            <option value="Menstrual">Menstrual Problem</option>
+                                            <option value="Muscle">Muscle Pain</option>
+                                            <option value="Nail">Nail Problem</option>
+                                            <option value="Nausea">Nausea</option>
+                                            <option value="Neck">Neck Pain</option>
+                                            <option value="Rash">Rash</option>
+                                            <option value="SexualF">Sexual Concern(Female)</option>
+                                            <option value="SexualM">Sexual Concern(Male)</option>
+                                            <option value="Skin">Skin Problem</option>
+                                            <option value="Sore">Sore Throat</option>
+                                            <option value="Vision">Vision Problem </option>
+                                            <option value="Warts">Warts</option>
+                                        </select>
+                                    </div>
+                                <br>
+                                <br>
+                                    <label class="control-label col-md-6 ">Description :
+                                    </label>
+                                    <div class="col-md-6">
+                                        <textarea type="text" class="form-control" name="description" ng-model='appoint.description' placeholder="Enter Description" required></textarea>
+                                    </div>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <div class="col-lg-12">
+                                <button type="submit" class="btn btn-info col-sm-2" ng-click="appoint.previous()">
+                                    Previous
+                                </button>
+                                <button type="submit" class="btn btn-info col-sm-2 col-sm-offset-7" ng-click="appoint.nextQuestionaire()">
+                                    Next
+                                </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class="col-lg-12 panel-default" ng-show="appoint.questionaireShow">
+                       <h2> Questionnaire</h2>
+                        <div class="col-lg-12">
+                            <label class = "control-label col-md-6 col-md-offset-1">Are you Pregnant?</label>
+                            <div class="col-md-2">
+                                <label> <input type="radio" ng-model="appoint.isPregnant" value="1" >Yes </label>
+                                <label>  <input type="radio" ng-model="appoint.isPregnant" checked value="0" >No</label>
+                            </div>
+
+                            <label class = "control-label col-md-6 col-md-offset-1">Do you have Renal disease?</label>
+                            <div class="col-md-2">
+                                <label> <input type="radio" ng-model="appoint.isRenal" value="1" >Yes </label>
+                                <label>  <input type="radio" ng-model="appoint.isRenal" checked value="0">No</label>
+                            </div>
+
+                            <label class = "control-label col-md-6 col-md-offset-1">Do you have chronic disease?</label>
+                            <div class="col-md-2">
+                                <label> <input type="radio" ng-model="appoint.isChronic" value="1">Yes </label>
+                                <label>  <input type="radio" ng-model="appoint.isChronic" checked value="0">No</label>
+                            </div>
+                            <label class = "control-label col-md-6 col-md-offset-1">Do you have dialysis?</label>
+                            <div class="col-md-2">
+                                <label> <input type="radio" ng-model="appoint.isDialysis" value="1">Yes </label>
+                                <label>  <input type="radio" ng-model="appoint.isDialysis" checked value="0">No</label>
+                            </div>
+                            <label class = "control-label col-md-6 col-md-offset-1">Did you have kidney transplantation?</label>
+                            <div class="col-md-2">
+                                <label> <input type="radio" ng-model="appoint.isKidney" value="1">Yes </label>
+                                <label>  <input type="radio" ng-model="appoint.isKidney" checked value="0">No</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-info col-sm-2" ng-click="appoint.cancel()">
+                                Previous
+                            </button>
+                            <button type="submit" class="btn btn-info col-sm-2 col-sm-offset-7" ng-click="appoint.submitProfile()">
+                                Submit
+                            </button>
+                        </div>
+                       
+                    </div>
+            </div>
+           
+            </div>
+        </div>
+    </div>
+

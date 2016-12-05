@@ -1,6 +1,6 @@
 angular.module('sense-ehr').controller('DoctorDashboardController', DoctorDashboardController);
 
-function DoctorDashboardController($http, $window, doctorDataFactory) {
+function DoctorDashboardController($http, $window, $location,doctorDataFactory) {
 	  var vm = this;
 	  
 	  //negative chart
@@ -447,54 +447,27 @@ doctorDataFactory.getLimitedBP(doctor_id).then(function(response) {
 		
 	        
     });
-  
 
- 
- 
- 
- 
- /*
-    [{
-	        	pointStart: Date.now() - 7 * 24 * 60 * 60 * 1000,
-	            pointInterval: 24 * 60 * 60 * 1000, 
-	            name: 'Tokyo',
-	            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2]
-	        },
-	        {
-	        	pointStart: Date.now() - 7 * 24 * 60 * 60 * 1000,
-	            pointInterval: 24 * 60 * 60 * 1000, 
-	            name: 'fasdf',
-	            data: [5.0, 7.9, 6.5, 9.5, 8.2, 10.5, 15.2]
-	        }
-	        ]
-  */
 
- var chart2 = new Highcharts.Chart({
-	chart: {
-		renderTo: 'negativeChart',
-     	type: 'column'
-     },
-     exporting: { 
-     	enabled: false 
-     },
-     title: {
-         text: ''
-     },
-     xAxis: {
-         categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-     },
-     credits: {
-         enabled: false
-     },
-     series: [{
-         name: 'John',
-         data: [5, 3, 4, 7, 2]
-     }, {
-         name: 'Jane',
-         data: [2, -2, -3, 2, 1]
-     }]
-});
+	$http.get('/api/doctor/getCurrentAppointments/' + doctor_id).then(function (result) {
+	    console.log(result);
+	    if (result.status === 200) {
+	        vm.displayedCurrent = result.data;
+	        vm.appointData = false;
+	        console.log("doctors drop down:", result.data);
+	    }
+	    else {
+	    	   vm.appointData = true;
+	        console.log("HTTP Error");
+	    }
+	}).catch(function (error) {
+		  vm.appointData = true;
+		console.log(error);
+	});
  
- 
- 	
+ 	vm.displayDetails=function(id){
+    	sessionStorage.removeItem('appt_id');
+    	$window.sessionStorage.appt_id=id;
+ 		$location.path('/medical-history');
+ 	};
 }

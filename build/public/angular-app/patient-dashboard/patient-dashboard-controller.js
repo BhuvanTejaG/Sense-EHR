@@ -2,6 +2,13 @@ angular.module('sense-ehr').controller('PatientDashboardController', PatientDash
 
 function PatientDashboardController($http, $window, patientDataFactory, doctorDataFactory) {
 	
+	
+	/*$(document).ready(function() {
+	    $('#datatable').dataTable();
+	  });
+			*/
+	
+	
 	var vm = this;
 	var patient_id= $window.sessionStorage.id;
 	var pieData='';
@@ -380,6 +387,7 @@ function PatientDashboardController($http, $window, patientDataFactory, doctorDa
 					if(result.data.length>0){
 						vm.medicationData=true;
 						vm.medication=result.data;
+						console.log(vm.medication);
 					}
 					else{
 						vm.medicationData=false;
@@ -479,11 +487,34 @@ function PatientDashboardController($http, $window, patientDataFactory, doctorDa
 		
 		};
 
-		$(document).ready(function() {
-		    $('#datatable').dataTable();
-		    $('input[name="daterange"]').daterangepicker();
-		  });
-				
+		
+		
+		/*
+		 * Sravani Files
+		 */
+
+	        $http.get('/api/patient/getUpcomingAppointments/'+patient_id).then(function(results) {
+	            console.log(results);
+	            if(results.status === 200) {
+	                vm.displayedUpcoming = results.data;
+	                vm.appointData = false;
+	                console.log("doctors drop down:",results.data);
+	            }
+	            else {
+	                vm.appointData = true;
+	               // vm.err = "HTTP Error";
+	                console.log("HTTP Error");
+	            }
+	        }).catch(function(error) {
+	            console.log(error);
+	            vm.appointData = true;
+	            //vm.err = error;
+	        });
+	   
+		
+		/*
+		 * Sravani Files
+		 */
 };
 
 

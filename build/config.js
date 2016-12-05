@@ -7,7 +7,7 @@ exports.db = {
 exports.sqldb = {
 	host: "localhost",
 	user: "root",
-	password: "1234",
+	password: "",
 	database: "ehr"
 }
 

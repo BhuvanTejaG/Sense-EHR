@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<div class="right_col" role="main"
+	ng-controller="MessageController as message"
+	data-ng-init="message.onLoad()" style="min-height: 700px;">
+
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Messages</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-default active" type="button" ng-click="message.onLoad()">Inbox</button>
+				<button class="btn btn-default" type="button" ng-click="message.sent()">Sent Messages</button>
+			</div>
+			<!-- Messages Inbox  -->
+			<div class="x_content" ng-if="!message.isPatient && message.inbox">
+				<table id="datatable" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Sno</th>
+							<th>From Patient</th>
+							<th>Description</th>
+							<th>Sent Date</th>
+							<th>Criticality</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="m in message.messages">
+							<td>{{$index +1}}</td>
+							<td>{{m.name}}</td>
+							<td>{{m.text}}</td>
+							<td>{{m.created_date.split("T")[0]}}</td>
+							<td>{{m.criticality}}</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+			<div class="x_content" ng-if="message.isPatient && message.inbox">
+				<table id="datatable" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Sno</th>
+							<th>From Doctor</th>
+							<th>Description</th>
+							<th>Sent Date</th>
+							<th>Criticality</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="m in message.messages">
+							<td>{{$index +1}}</td>
+							<td>{{m.name}}</td>
+							<td>{{m.text}}</td>
+							<td>{{m.created_date.split("T")[0]}}</td>
+							<td>{{m.criticality}}</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+			<!-- Messages Inbox  -->
+			<!-- Messages Out Box  -->
+					<div class="x_content" ng-if="!message.isPatient && !message.inbox">
+				<table id="datatable" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Sno</th>
+							<th>To Patient</th>
+							<th>Description</th>
+							<th>Sent Date</th>
+							<th>Criticality</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="m in message.messages">
+							<td>{{$index +1}}</td>
+							<td>{{m.name}}</td>
+							<td>{{m.text}}</td>
+							<td>{{m.created_date.split("T")[0]}}</td>
+							<td>{{m.criticality}}</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+			<div class="x_content" ng-if="message.isPatient && !message.inbox">
+				<table id="datatable" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Sno</th>
+							<th>To Doctor</th>
+							<th>Description</th>
+							<th>Sent Date</th>
+							<th>Criticality</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="m in message.messages">
+							<td>{{$index +1}}</td>
+							<td>{{m.name}}</td>
+							<td>{{m.text}}</td>
+							<td>{{m.created_date.split("T")[0]}}</td>
+							<td>{{m.criticality}}</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>	<!-- Messages Out Box  -->
+	</div>
+</div>

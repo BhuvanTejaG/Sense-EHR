@@ -4,6 +4,8 @@ var router = express.Router();
 var ctrlPatients = require('../controllers/patients.controller.js');
 var ctrlUsers = require('../controllers/users.controller.js');
 var ctrlDoctors = require('../controllers/doctors.controller.js');
+var ctrlHistory = require('../controllers/history.controller.js');
+var scrap = require('../controllers/scraping.js');
 
 // Patient routes
 router
@@ -30,8 +32,39 @@ router
 	.route('/patient/getHealthStatus/:patient_id')
 	.get(ctrlPatients.getHealthStatus);
 
+router
+	.route('/patient/getPatientInboxMessages/:patient_id')
+	.get(ctrlPatients.getPatientInboxMessages);
+
+router
+	.route('/patient/getPatientSentMessages/:patient_id')
+	.get(ctrlPatients.getPatientSentMessages);
+
+router
+	.route('/patient/getUpcomingAppointments/:patient_id')
+	.get(ctrlPatients.getUpcomingAppointments);
+
+router
+	.route('/patient/getPreviousAppointments/:patient_id')
+	.get(ctrlPatients.getPreviousAppointments);
+
+router
+	.route('/patient/submitAppointment')
+	.post(ctrlPatients.submitAppointment);
+
+router
+	.route('/patient/getMedicationTips/:patient_id')
+	.get(ctrlPatients.getMedicationTips);
 
 // Doctor routes
+router
+	.route('/doctor/getDoctorInboxMessages/:doctor_id')
+	.get(ctrlDoctors.getDoctorInboxMessages);
+
+router
+	.route('/doctor/getDoctorSentMessages/:doctor_id')
+	.get(ctrlDoctors.getDoctorSentMessages);
+
 router
 	.route('/doctor/patients/:doctor_id')
 	.get(ctrlDoctors.getPatients);
@@ -59,12 +92,31 @@ router
 router
 	.route('/doctor/profile/')
 	.post(ctrlDoctors.updateDoctorProfile);
+router
+	.route('/doctor/doctorCriteria')
+	.post(ctrlDoctors.doctorCriteria);
+
+router
+	.route('/doctor/getCurrentAppointments/:doctor_id')
+	.get(ctrlDoctors.getCurrentAppointments);
+
+router
+	.route('/doctor/getAllAppointments/:doctor_id')
+	.get(ctrlDoctors.getAllAppointments);
+
+router
+	.route('/doctor/doctorAddress/:doctor_id')
+	.get(ctrlDoctors.doctorAddress);
 
 
 // Authentication
 router
 	.route('/users/login/:username/:password')
 	.get(ctrlUsers.login);
+
+router
+	.route('/users/loginForMobile/:email/:password/:type')
+	.get(ctrlUsers.loginForMobile);
 
 router
 	.route('/users/FetchID/:username/:type')
@@ -97,6 +149,39 @@ router
 router
 	.route('/users/setProfile/:type/:user_id')
 	.get(ctrlUsers.setProfile);
+//Medical History Record
+router
+	.route('/history/reasons')
+	.get(ctrlHistory.getReasons);
 
+router
+	.route('/history/medicalRecord/:appt_id')
+	.get(ctrlHistory.getMedicalRecord);
+
+router
+	.route('/history/medications/:apptId')
+	.get(ctrlHistory.getMedications);
+
+router
+	.route('/history/putMedications')
+	.post(ctrlHistory.putMedications);
+router
+	.route('/history/sendMessageAsDoctor')
+	.post(ctrlHistory.sendMessageAsDoctor);
+router
+	.route('/history/sendMessageAsPatient')
+	.post(ctrlHistory.sendMessageAsPatient);
+router
+	.route('/doctor/doctorCity')
+	.post(ctrlDoctors.doctorCities);
+
+router
+	.route('/doctor/docSpec')
+	.post(ctrlDoctors.docSpecialization);
+
+//Get the Extra features Using New APIs
+router
+	.route('/additional/scrap/:text')
+	.get(scrap.getScrapingData);
 
 module.exports = router;

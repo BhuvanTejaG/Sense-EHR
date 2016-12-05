@@ -1,0 +1,27 @@
+<div class="right_col" role="main" style="min-height: 700px;" ng-controller="FirstController as first">
+        <div  class="col-md-12 col-sm-12 col-xs-12" >
+        Welcome to Sense EHR System
+        Doctors and Patients are connected
+        </div>
+        
+        
+                        
+                        <div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12"
+									for="lastName">Enter Search String to Scrap Web: <span class="required">*</span>
+								</label>&nbsp&nbsp
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="text" ng-model="first.text"
+										required="required" id="text" name="text"
+										class="form-control col-md-7 col-xs-12">
+								</div>
+								<br>
+								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+									<button type="submit" class="btn btn-success"
+										 ng-click="first.getWordCloud()">Search
+										</button>
+								</div>
+						</div>
+		<div id="demo" class="col-md-6 col-sm-6 col-xs-6" ></div>
+						
+</div>

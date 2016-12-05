@@ -1,6 +1,409 @@
-<h1>Main Page</h1>
-	<button type="button" class="btn btn-success"
-										ng-click="lgnCtrl.signUp()">Sign Up</button>
-										
-											<button type="button" class="btn btn-success"
-										ng-click="lgnCtrl.login()">Login</button>
+	
+	<style type="text/css">
+	@import url("../css/freelancer.css");
+	    
+	#map{
+			width: 100%;
+			height: 500px;
+		}	
+		
+	</style>
+
+<!-- Navigation -->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom" style="background-color: white">
+	<div class="container">
+
+        <div id="name" style="float: left;">
+                <p class="site_title"  >  <span style="font-size:25px;font-weight: bold;color: #2C3E50; padding: 5px;"><i class="fa fa-medkit"></i>&nbsp;&nbsp;Sense EHR!</span></p>
+        </div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li>
+				&emsp;&emsp;&emsp;&emsp;
+				</li>
+				<li class="page-scroll">
+					<a href="#register"><i class="fa fa-plus-circle fa-lg"></i> Register</a>
+				</li>
+				<li class="page-scroll">
+					<a href="#portfolio"><i class="fa fa-location-arrow fa-lg"></i> Location</a>
+				</li>
+				<li class="page-scroll">
+					<a href="#about"><i class="fa fa-info-circle fa-lg"></i> About Project</a>
+				</li>
+				<li class="page-scroll">
+					<a href="#contact"><i class="fa fa-users fa-lg"></i> Contact</a>
+				</li>
+			</ul>
+			
+			<form class="nav navbar-form navbar-right">
+				<div class="form-group" style="position: relative; right: 75px">
+
+					<input type="text" ng-model="lgnCtrl.username" class="form-control" id="username" placeholder="Enter your email address" required>
+						&emsp;
+					<input type="password" ng-model="lgnCtrl.password" class="form-control" id="password" placeholder="Enter your Password" required>
+						&emsp;
+					<button type="button" class="btn btn-success" ng-click="lgnCtrl.login()">Login</button>
+				</div>
+			</form>
+			
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
+</nav>
+
+	<section id="register" style="background: #18BC9C;color:white;">
+	
+	
+	
+	<table style="width:100%">
+  <tr>
+  <td>
+  	<video width="800" height="600" preload="true" autoplay loop muted>
+		<source src="../videos/senseEHR.mp4" type="video/mp4">
+	</video>
+				
+ </td>
+
+ 
+  <td>
+  
+  <div class="col-lg-12">
+				<h3>Sign Up</h3>
+
+  
+  
+  	<form class="form-horizontal">
+					<fieldset>
+						<div class="form-group">
+							<div class="col-lg-4">
+								<input type="text" ng-model="lgnCtrl.firstname_signup" class="form-control" id="firstname_signup" placeholder="First name" required>
+							</div>
+							<div class="col-lg-5">
+								<input type="text" ng-model="lgnCtrl.lastname_signup" class="form-control" id="lastname_signup" placeholder="Last name" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-9">
+								<input type="email" ng-model="lgnCtrl.username_signup" class="form-control" id="username_signup" placeholder="Email address" required>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-9">
+								<input type="password" ng-model="lgnCtrl.password_signup" class="form-control" id="password_signup" placeholder="Password (6 or more characters)" required>
+							</div>
+						</div>
+						
+						<div class="form-group">
+                        <label class=" col-md-3">Type : <span class="required">*</span></label>
+                        <div class="col-md-6">
+                          <select id="type_signup" ng-model="lgnCtrl.type_signup" required="required" class="select2_single form-control" tabindex="-1">
+                          	<option value="">Please Choose</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="patient">Patient</option>
+                              </select>
+	                        </div>
+	                      </div>
+	                      
+	                      <br>
+	                      
+		                      
+						<div class="form-group">
+							<div class="col-lg-9 col-md-offset-3">
+								<button type="button" class="btn btn-success" style="background-color: #2C3E50; color:white; " ng-click="lgnCtrl.signUp()">Sign Up</button>
+							</div>
+						</div>
+						
+					
+					</fieldset>
+				</form>
+				
+				
+					</div>
+  	
+  </td>
+
+  </tr>
+ 
+    
+  
+</table>
+
+
+				
+
+				
+	</section>
+
+<!-- Portfolio Grid Section -->
+<section id="portfolio" style=" color: white">
+	<div class="container" width="80%" >
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h3>Location</h3>
+				<hr class="star-light">
+				<div id="map" text-center></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- About Section  #2C3E50(Blue)  #18BC9C -->
+<section style="background: #18BC9C; color: white" id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h3>About Project</h3>
+				<hr class="star-light"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p style="font-size: 15px">We developed an application, which notifies patient and doctor
+
+					about the patient&#39;s health details. The patient carries a wearable sensor, so the data collected
+
+					and processed is being sent to doctor for recommending medication and monitor patient&#39;s
+
+					health. A recommendation on fitness settings and medication is provided based on previously
+
+					collected Electronic Health Records (EHR) if there are any deviations from clinical quality
+
+					metrics (CQM&#39;s).</p>                </div>
+		</div>
+	</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" style="background-color: white; color:#2C3E50; ">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h3 class="section-heading">Our Team</h3>
+				<h4 class="section-subheading">Master's in Software Engineering</h4>
+				<hr class="star-about">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="team-member">
+					<img src="../../images/team/murthy.jpg" class="img-responsive img-circle" width="250" height="250" alt="">
+					<h4>&emsp;&emsp;&emsp;&emsp;Murthy Gabbiti</h4>
+					<p class="text-muted">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Developer</p>
+					<ul class="list-inline social-buttons">
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+						<li><a href="https://www.facebook.com/murthygabbiti"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li><a href="https://www.linkedin.com/in/murthygabbiti"><i class="fa fa-linkedin"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="team-member">
+					<img src="../../images/team/bhuvan.jpg" class="img-responsive img-circle" width="250" height="250" alt="">
+					<h4>&emsp;&emsp;&emsp;&emsp;Bhuvan Teja</h4>
+					<p class="text-muted">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Developer</p>
+					<ul class="list-inline social-buttons">
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+						<li><a href="https://www.facebook.com/bhuvan.teja.50" target="_blank"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li><a href="https://www.linkedin.com/in/bhuvanteja" target="_blank"><i class="fa fa-linkedin"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="team-member">
+					<img src="../../images/team/prashanth.jpg" class="img-responsive img-circle" width="250" height="250" alt="">
+					<h4>&emsp;&emsp;&emsp;Prashanth Mudhelli</h4>
+					<p class="text-muted">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Developer</p>
+					<ul class="list-inline social-buttons">
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+						<li><a href="https://www.facebook.com/mudhelli"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li><a href="https://www.linkedin.com/in/pmudhelli"><i class="fa fa-linkedin"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="team-member">
+					<img src="../../images/team/sravani.jpg" class="img-responsive img-circle" width="250" height="250" alt="">
+					<h4>&emsp;&emsp;&emsp;&emsp;Sravani Gunti</h4>
+					<p class="text-muted">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Developer</p>
+					<ul class="list-inline social-buttons">
+						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+						<li><a href="https://www.facebook.com/srav.gunti"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li><a href="https://www.linkedin.com/in/guntisravani1991"><i class="fa fa-linkedin"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<!-- Footer -->
+<mainfooter class="text-center">
+	<div class="footer-above">
+		<div class="container">
+			<div class="row">
+				<div class="footer-col col-md-12 text-center">
+					<h4 style="color:white;">Location:</h4>
+					<p style="color:white;">San Jose State University
+						<br>San Jose, CA.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-below">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12" style="color:white;">
+					Copyright &copy; Team Sense-EHR 2016
+				</div>
+			</div>
+		</div>
+	</div>
+</mainfooter>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+	<a class="btn btn-primary" href="#page-top">
+		<i class="fa fa-chevron-up"></i>
+	</a>
+</div>
+
+<!-- Portfolio Modals -->
+
+<script type="text/javascript">
+
+var map;
+var infowindow;
+var slat;
+var slon;
+var dest;
+var request;
+var service;
+var markers = [];
+
+function initialize(){
+
+	var directionsDisplay = new google.maps.DirectionsRenderer;
+    var directionsService = new google.maps.DirectionsService;
+
+	var center = new google.maps.LatLng(37.422, -122.084058);
+	map = new google.maps.Map(document.getElementById('map'), {
+		center: center,
+		zoom: 13
+		
+		
+		});
+	 directionsDisplay.setMap(map);
+	 
+		
+	request = {
+		location: center,
+		radius: 8047,
+		types: ['hospital']
+	};
+	infowindow = new google.maps.InfoWindow();
+
+	var service = new google.maps.places.PlacesService(map);
+	
+	service.textSearch(request, callback);
+	
+	google.maps.event.addListener(map, 'rightclick', function(event) {
+		map.setCenter(event.latlng)
+		clearResults(markers)
+		
+		var request = {
+			location: event.latLng,
+			radius: 8047,
+			types: ['hospital']
+	};
+	service.textSearch(request, callback);
+	})	
+	
+	var infWindow = new google.maps.InfoWindow({map: map});
+	 // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+		  slat=position.coords.latitude;
+		  slon=position.coords.longitude;	
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infWindow.setPosition(pos);
+            infWindow.setContent('<div style="color:black;">My Location</div>');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infWindow, map.getCenter());
+        }
+}
+	
+	
+	
+	function callback(results, status) {
+		if(status == google.maps.places.PlacesServiceStatus.OK){
+			for (var i = 0; i < results.length; i++){
+				
+				markers.push(createMarker(results[i]));
+			}
+		} 
+	}
+	
+	function createMarker(place) {
+		var placeLoc = place.geometry.location;
+		var marker = new google.maps.Marker({
+			map: map,
+			position: place.geometry.location
+		});
+		
+		
+		google.maps.event.addListener(marker, 'click', function() {
+		
+		dest = place.name;
+		
+		//window.location.href= "http://maps.google.com/maps?" + "saddr="+ slat + "," + slon + "&daddr="  + dest;
+			infowindow.setContent('<div style="color:black;"><strong>' + place.name + '</strong><br>' +
+               place.formatted_address + '<br>' + '<a href="#" onclick="h1();">Get Directions</a>' +'</div>');
+		infowindow.open(map, this);
+				
+		});
+		return marker;
+	
+	}
+	
+	function h1(){
+	var win = window.open("http://maps.google.com/maps?" + "saddr="+ slat + "," + slon + "&daddr="  + dest, '_blank');
+  win.focus();
+	//window.location.href= "http://maps.google.com/maps?" + "saddr="+ slat + "," + slon + "&daddr="  + dest;
+	}
+	
+	function clearResults(markers) {
+		for (var m in markers) {
+			markers[m].setMap(null)
+		}
+		markers = []
+	}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+		
+		
+</script>

@@ -40,14 +40,14 @@ function LoginController($http, $location, $window) {
   vm.login = function() {
 	  
 	  // Test
-	  vm.username = "testsecond@gmail.com";
-	  vm.password = "12345";
+	 // vm.username = "bhu@gmail.com";
+	 // vm.password = "1234";
 	  
     if (vm.username && vm.password) {
-//      var user = {
-//        username: vm.username,
-//        password: vm.password
-//      };
+      var user = {
+        username: vm.username,
+        password: vm.password
+      };
 
       $http.get('/api/users/login/'+vm.username+'/'+vm.password).then(function(response) {
     	  
@@ -174,6 +174,9 @@ function LoginController($http, $location, $window) {
       })
 
     }
+    else{
+    	alert("Please enter valid credentials");
+    }
   }
 
   vm.logout = function() {
@@ -190,11 +193,11 @@ function LoginController($http, $location, $window) {
  vm.signUp = function() {
 	  
 	  // Test
-	  vm.username_signup = "patient@gmail.com";
-	  vm.password_signup = "12345";
-	  vm.firstname_signup = "testfirst";
-	  vm.lastname_signup = "testlast";
-	  vm.type_signup = "patient";
+	 // vm.username_signup = "patient@gmail.com";
+	 // vm.password_signup = "1234";
+	 // vm.firstname_signup = "testfirst";
+	 // vm.lastname_signup = "testlast";
+	 // vm.type_signup = "patient";
 	  
     if (vm.username_signup && vm.password_signup && vm.type_signup && vm.firstname_signup && vm.lastname_signup) {
     	
@@ -553,5 +556,26 @@ function LoginController($http, $location, $window) {
 	  
 	  $location.path('/profile');
 }
+ 
+ vm.showMessages = function() { 
+	  
+	  $location.path('/messages');
+}
+ 
+  vm.bookAppointment = function() {
+
+	$location.path('/bookAppointment');
+	}
+  vm.showAppointment = function() {
+
+  	$location.path('/showAppointment');
+  }
+
+  vm.doctorAppointments = function() {
+  	$location.path('/doctorAppointments');
+  }
+  vm.previousAppointments = function() {
+	  	$location.path('/previousAppointments');
+	}
   
 }

@@ -1,7 +1,9 @@
 
 var express = require('express');
-
 var server = express();
+var multer = require('multer');
+var upload = multer();
+var history = require('./build/api/controllers/history.controller.js');
 
 
 
@@ -43,7 +45,8 @@ function configureServer () {
 	
 	// Add Routing
 	server.use('/api', dep.routes);
-	
+	server.post('/history/testResult', upload.single('image'), history.putFile);
+
 };
 
 

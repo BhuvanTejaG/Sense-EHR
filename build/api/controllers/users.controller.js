@@ -367,3 +367,31 @@ module.exports.signinPatient = function(req,res){
 		} 
 	},query);
 };
+
+module.exports.loginForMobile = function(req,res){
+
+	  console.log('[]: Fetching ID');
+	  
+	  var email = req.params.email;
+	  var password = req.params.password;
+	  var type = req.params.type;
+	  
+		if(type == "patient"){
+			 getid = "select * from patient p,login l where p.email='"+email+"' and l.email='"+email+"' and l.password='"+password+"'";
+		} 
+		mysql.fetchData(function(err,result){
+			if(err){
+				res
+					.status(500)
+					.json(err);
+			}
+			else {
+				
+				res
+					.status(200)
+					.json(result);
+				
+			} 
+		},getid);
+
+};

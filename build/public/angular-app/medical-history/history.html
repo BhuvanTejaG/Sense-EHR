@@ -1,0 +1,460 @@
+<div class="right_col" role="main" ng-controller="HistoryController as history" style="min-height: 700px;" data-ng-init="history.onLoad()">
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Medical Record</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <medium><strong>Patient Details</strong></medium>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <ul class="list-unstyled timeline">
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Name</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.patientName}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Age</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.age}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Height</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.height}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Weight</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.weight}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <medium><strong>Appointment Details</strong></medium>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <ul class="list-unstyled timeline">
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Physician</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.doctorName}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Speciality</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.specialization}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Date</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.apptDate}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="block">
+                            <div class="tags">
+                                <div class="tag">
+                                    <span>Time</span>
+                                </div>
+                            </div>
+                            <div class="block_content">
+                                <h2 class="title" style="font-size:14px;">
+                                    <div>{{medicalRecord.apptTime}}</div>
+                                </h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+    	<h6>Please click here to send an immediate message</h6>
+    	<br>
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="align:center;">Send Message</button>
+     			<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                   <form id="form4" name="form4" data-parsley-validate>
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel">Send Instant Message</h4>
+                        </div>
+                        <div class="modal-body">
+                        <label for="message">Message (20 chars min, 1000 chars max) :</label>
+                         
+                        <textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="1000" data-parsley-minlength-message="Please enter atleast 20 charecters"
+                            data-parsley-validation-threshold="10" ng-model="history.textMessageEntered"></textarea>
+                       <br><br>
+                      <label ng-repeat="members in history.totalMembers">
+						<input
+						    type="checkbox"
+						    name="selectedMembers[]"
+						    value="{{members}}"
+						    ng-checked="selection.indexOf(members) > -1"
+						    ng-click="history.toggleSelection(members)"
+						  >   &nbsp&nbsp{{members}}
+						</label>
+<!-- 						<input type="checkbox" ng-show="displayDoctor" ng-model="history.patient">Patient &nbsp&nbsp -->
+<!-- 						<input type="checkbox" ng-show="displayDoctor" ng-model="history.caretaker">Care Taker -->
+						<br>
+						Criticality : 
+						<input type="radio" name="criticality" ng-model="history.criticality" value="High">High
+						&nbsp&nbsp<input type="radio" name="criticality" ng-model="history.criticality" value="Low">Low
+                       </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary"  ng-disabled="form4.$pristine|| form4.$invalid" data-dismiss="modal" ng-click="history.sendMessage()" >Send Message</button>
+                        </div>
+
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+                  <br><br>
+                   <div class="alert alert-success alert-dismissible fade in" role="alert" ng-show="history.displaySuccessMessage">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                   		{{history.successMessage}}
+                  </div>
+    </div>
+    <div class="x_content">
+        <!-- start accordion -->
+        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel">
+                <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h4 class="panel-title">Diagnosis</h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <br>
+                    <div class="row">
+                        <script src="../medical-history/knob-jquery.js"></script>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Physician Entry</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br/>
+                                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" ng-show="history.isDoc">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" style="vertical-align:middle;">Blood Pressure <span class="required">*</span></label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="x_content">
+                                                    <div class="col-md-4">
+                                                        <p>Systolic (mm Hg)</p>
+                                                        <input ng-model="medicalRecord.systolic_pressure || 120" value="120" class="knob" data-width="100" data-height="120" data-angleOffset=-125 data-angleArc=250 data-fgColor="#34495E" data-rotation="clockwise" data-min="0" data-max="200">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p>Diastolic (mm Hg)</p>
+                                                        <input ng-model="medicalRecord.diastolic_pressure || 80" value=80 class="knob" data-width="100" data-height="120" data-angleOffset=-125 data-angleArc=250 data-fgColor="#34495E" data-rotation="clockwise" data-min="0" data-max="200">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Body Temperature <span class="required">*</span></label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="x_content">
+                                                    <div class="col-md-4">
+                                                        <p>&nbsp &nbsp Fahrenheit</p>
+                                                        <input ng-model="medicalRecord.temperature || 98.5" value="98.5" class="knob" data-width="100" data-height="120" data-angleOffset=-125 data-angleArc=250 data-fgColor="#34495E" data-rotation="clockwise" data-min="60" data-max="120" data-step=".1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Reason</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="select" list="icd" class="form-control col-md-10" ng-model="medicalRecord.reason">
+                                                <datalist id="icd" class="wrapper">
+                                                    <option ng-repeat="listItem in history.reasonList" value="{{listItem.reason}}">{{listItem.reason_id}}</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Comments <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea ng-model="medicalRecord.comments" rows="5" class="form-control col-md-7 col-xs-12" required="required"></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                    
+                                    <form id="demo-form3" class="form-horizontal form-label-left" ng-show="!history.isDoc">
+	                                    <div class="form-group">
+	                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" style="vertical-align:middle;">Blood Pressure</label>
+	                                        <div class="col-md-9 col-sm-9 col-xs-12">
+	                                            <div class="x_content">
+	                                                <div class="col-md-4">
+	                                                    <p>Systolic (mm Hg)</p>
+	                                                    {{medicalRecord.systolic_pressure}}
+	                                                </div>
+	                                                <div class="col-md-4">
+	                                                    <p>Diastolic (mm Hg)</p>
+	                                                    {{medicalRecord.diastolic_pressure}}
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Body Temperature</label>
+	                                        <div class="col-md-9 col-sm-9 col-xs-12">
+	                                            <div class="x_content">
+	                                                <div class="col-md-4">
+	                                                    <p>Fahrenheit</p>
+	                                                    {{medicalRecord.temperature}}
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Reason</label>
+	                                        <div class="col-md-9 col-sm-9 col-xs-12">
+	                                        <div class="x_content">
+                                            <div class="col-md-12">
+	                                        	{{medicalRecord.reason}}
+	                                        </div>
+	                                        </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Comments</label>
+	                                        <div class="col-md-9 col-sm-9 col-xs-12">
+	                                        <div class="x_content">
+                                            <div class="col-md-12">
+	                                        	{{medicalRecord.comments}}
+                                        	</div>
+                                        	</div>
+	                                        </div>
+	                                    </div>
+	                                </form>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Patient Entry</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <form class="form-horizontal form-label-left">
+                                        <div class="form-group">
+                                            <label for="city" class="control-label col-md-7 col-sm-7 col-xs-7">Appointment Reason</label>
+                                            <div class="col-md-5" style="padding:8px;">{{medicalRecord.apptReason}}</div>
+                                        </div>
+                                        <u>
+                                            <p class="font-gray-dark">In the last two years, patient had/has:</p>
+                                        </u>
+                                        <div class="form-group">
+                                            <label for="city" class="control-label col-md-7 col-sm-7 col-xs-7">Chronic Kidney Disease</label>
+                                            <div class="col-md-5" style="padding:8px;">{{medicalRecord.isChronic==1?'Yes':'No'}}</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city" class="control-label col-md-7 col-sm-7 col-xs-7">Kindney Transplant</label>
+                                            <div class="col-md-5" style="padding:8px;">{{medicalRecord.isTransplant==1?'Yes':'No'}}</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city" class="control-label col-md-7 col-sm-7 col-xs-7">Renal Disease</label>
+                                            <div class="col-md-5" style="padding:8px;">{{medicalRecord.isRenal==1?'Yes':'No'}}</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-7 col-sm-7 col-xs-7" for="first-name">Pregnancy</label>
+                                            <div id="first-name2" class="col-md-5" style="padding:8px;">{{medicalRecord.isPregnant==1?'Yes':'No'}}</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city" class="control-label col-md-7 col-sm-7 col-xs-7">Dialysis Treatment</label>
+                                            <div class="col-md-5" style="padding:8px;">{{medicalRecord.isDialysis==1?'Yes':'No'}}</div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <h4 class="panel-title">Medication</h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <form editable-form name="tableform" onaftersave="saveTable()" oncancel="cancel()">
+                            <!-- table -->
+                            <table class="table table-bordered table-hover table-condensed">
+                                <tr style="font-weight: bold">
+                                    <td>Drug Name</td>
+                                    <td>Usage</td>
+                                    <td>Purpose</td>
+                                    <td>Start</td>
+                                    <td>End</td>
+                                    <td ng-show="tableform.$visible"><span>Action</span></td>
+                                </tr>
+                                <tr ng-repeat="med in history.medication | filter:filterMed" ng-model="history.medication">
+                                    <td>
+	                                    <!-- editable name (text with validation) -->
+	                                    <span editable-text="med.drug_name" e-form="tableform">
+	                                    {{ med.drug_name }}
+                                        </span>
+                                    </td>
+                                    <td>
+	                                    <span editable-text="med.usage" e-form="tableform">
+	                                    {{ med.usage }}
+	                                    </span>
+                                    </td>
+                                    <td>
+	                                    <span editable-text="med.purpose" e-form="tableform">
+	                                    {{ med.purpose }}
+	                                    </span>
+                                    </td>
+                                    <td>
+	                                    <span editable-text="med.start_date" e-form="tableform">
+	                                    {{ med.start_date }}
+                                        </span>
+                                    </td>
+                                    <td>
+	                                    <span editable-text="med.end_date" e-form="tableform">
+	                                    {{ med.end_date }}
+	                                    </span>
+                                    </td>
+                                    <td ng-show="tableform.$visible" ><button type="button" ng-click="deleteMed(med.sno)" class="btn btn-danger pull-right">Del</button></td>
+                                </tr>
+                            </table>
+                            <!-- buttons -->
+                            <div class="btn-edit" ng-show="!tableform.$visible">
+                                <button type="button" class="btn btn-warning" ng-click="tableform.$show()" ng-show="history.isDoc">Edit</button>
+                            </div>
+                            <div class="btn-form" ng-show="tableform.$visible">
+                                <button type="button" ng-disabled="tableform.$waiting" ng-click="addMed()" class="btn btn-success pull-right">Add Row</button>
+                                <button type="submit" ng-disabled="tableform.$waiting" ng-click="tableform.$saveTable()" class="btn btn-success">Save</button>
+                                <button type="button" ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()" class="btn btn-primary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <h4 class="panel-title">Test Results</h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Available Test Results</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    images
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" ng-show="history.isDoc">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Upload Test Results</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                  <form ng-submit="history.uploadFile()">
+                                    <div class="form-group">
+<!--                                         <input type="file" id="testResult" fileread="history.image" ng-model="history.result" accept="image/*"> -->
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-sm">Upload</button>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of accordion -->
+        <br>
+        <div class="form-group" style="text-align:center" ng-show="history.isDoc">
+            <button type="submit" class="btn btn-primary" id="submit">Cancel</button>
+            <button type="submit" class="btn btn-success" ng-click="history.submitRecord()">Submit</button>
+        </div>
+    </div>
+</div>
+<!-- History Controller -->
